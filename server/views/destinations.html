@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--meta-->
+<meta name="theme-color" content="#1a1410">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="phead wrap">
+  <nav class="crumbs rise" style="--d:120ms"><a href="/">Lull</a><span>/</span><span>Destinations</span></nav>
+  <div class="phead__row">
+    <div>
+      <h1 class="h-lg phead__title" data-words>Eight regions worth the flight.</h1>
+      <p class="lede phead__lede rise" style="--d:300ms">
+        None of them are close to an airport. Two of them require a boat. One requires a light aircraft
+        and a guide who will walk you to your tent after dark.
+      </p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" style="padding-bottom:clamp(72px,9vw,140px)">
+  <div class="grid grid--2" data-dests></div>
+</main>
+
+<section class="wrap" style="padding-bottom:clamp(72px,9vw,140px)">
+  <div class="cta-band art art--gen" data-reveal style="--t1:#6b3f2e;--t2:#e5a870">
+    <div class="cta-band__body">
+      <p class="kicker">Not sure where</p>
+      <h2 class="h-md">Most people arrive with a month, not a map.</h2>
+      <p class="lede">Tell us when you can go and roughly what you want the week to feel like. We will send three places and a reason for each.</p>
+      <a class="btn magnetic" href="/plan">
+        Plan a trip
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" data-footer></footer>
+
+<script type="module" src="/js/destinations.js"></script>
+</body>
+</html>

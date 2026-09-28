@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--meta-->
+<meta name="theme-color" content="#1a1410">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="phead wrap">
+  <nav class="crumbs rise" style="--d:120ms"><a href="/">Lull</a><span>/</span><span>Plan a trip</span></nav>
+  <div class="phead__row">
+    <div>
+      <h1 class="h-lg phead__title" data-words>Tell us a month.</h1>
+      <p class="lede phead__lede rise" style="--d:300ms">
+        That is genuinely enough to start. Everything below except your name and email is optional.
+      </p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="plan-layout">
+
+    <div data-form-host>
+      <form class="form rise" style="--d:400ms" data-form novalidate>
+
+        <div class="form-row">
+          <div class="field" data-field="name">
+            <label class="field__label" for="name">Your name</label>
+            <input class="field__input" id="name" name="name" type="text" autocomplete="name" placeholder="Ines Aro" required>
+            <span class="field__error" data-error></span>
+          </div>
+          <div class="field" data-field="email">
+            <label class="field__label" for="email">Email</label>
+            <input class="field__input" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <span class="field__error" data-error></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field" data-field="destination">
+            <label class="field__label" for="destination">Region, if you have one in mind</label>
+            <select id="destination" name="destination" data-destinations>
+              <option value="">No preference</option>
+            </select>
+            <span class="field__error" data-error></span>
+          </div>
+          <div class="field" data-field="month">
+            <label class="field__label" for="month">Roughly when</label>
+            <select id="month" name="month" data-months>
+              <option value="">Not sure yet</option>
+            </select>
+            <span class="field__error" data-error></span>
+          </div>
+        </div>
+
+        <div class="field" data-field="stay">
+          <label class="field__label" for="stay">A specific stay, if one caught you</label>
+          <select id="stay" name="stay" data-stays>
+            <option value="">Send me a shortlist instead</option>
+          </select>
+          <span class="field__error" data-error></span>
+        </div>
+
+        <div class="field" data-field="party">
+          <span class="field__label">How many of you</span>
+          <div class="segment" data-party role="group" aria-label="Party size"></div>
+          <span class="field__error" data-error></span>
+        </div>
+
+        <div class="field" data-field="message">
+          <label class="field__label" for="message">Anything else</label>
+          <textarea id="message" name="message" placeholder="What you want the week to feel like. Whether anyone needs to avoid stairs. Whether you would rather be cold than crowded."></textarea>
+          <span class="field__error" data-error></span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-top:8px">
+          <button class="btn" type="submit" data-submit>
+            Send enquiry
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="mono">No newsletter · No follow-up sequence</span>
+        </div>
+
+      </form>
+    </div>
+
+    <aside class="plan-aside rise" style="--d:500ms">
+      <p class="kicker kicker--bare">What happens next</p>
+      <div class="plan-aside__item"><strong>01</strong><p>Someone reads it. An actual person, in Lisbon or Oslo, usually the same day.</p></div>
+      <div class="plan-aside__item"><strong>02</strong><p>You get three places, not twenty — each with a reason it is on the list and a plain sentence about its downside.</p></div>
+      <div class="plan-aside__item"><strong>03</strong><p>If none of them land, we go again. There is no charge for any of this and no obligation at the end.</p></div>
+      <div style="padding-top:20px;border-top:1px solid var(--hair-ghost)">
+        <p class="mono" style="margin-bottom:8px">Prefer to talk</p>
+        <a class="link" href="mailto:hello@lull.travel">hello@lull.travel</a>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="footer" data-footer></footer>
+
+<script type="module" src="/js/plan.js"></script>
+</body>
+</html>

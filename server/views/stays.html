@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--meta-->
+<meta name="theme-color" content="#1a1410">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="phead wrap">
+  <nav class="crumbs rise" style="--d:120ms"><a href="/">Lull</a><span>/</span><span>Stays</span></nav>
+  <div class="phead__row">
+    <div>
+      <h1 class="h-lg phead__title" data-words>Every stay we have.</h1>
+      <p class="lede phead__lede rise" style="--d:300ms">
+        Fourteen places across eight regions. Filter them, or read all fourteen — it takes about six minutes
+        and it is the better way to do it.
+      </p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" style="padding-bottom:clamp(72px,9vw,140px)">
+
+  <div class="filters rise" style="--d:400ms">
+    <div class="filters__group" data-filter-dest>
+      <button class="chip" type="button" data-value="" aria-pressed="true">All regions</button>
+    </div>
+    <div class="filters__sep" aria-hidden="true"></div>
+    <div class="filters__group" data-filter-type>
+      <button class="chip" type="button" data-value="" aria-pressed="true">Any type</button>
+    </div>
+    <div class="filters__sep" aria-hidden="true"></div>
+    <div class="filters__group">
+      <label class="visually-hidden" for="sort">Sort stays</label>
+      <select id="sort" data-sort style="padding:8px 34px 8px 14px;border-radius:999px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--hair-soft);background-color:transparent;color:var(--ink-dim);appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23fbf7f0' stroke-opacity='.55' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 14px center;cursor:pointer">
+        <option value="featured">Featured first</option>
+        <option value="price-asc">Price, low to high</option>
+        <option value="price-desc">Price, high to low</option>
+        <option value="rating">Highest rated</option>
+        <option value="sleeps">Sleeps most</option>
+      </select>
+    </div>
+    <span class="filters__count" data-count-label>14 stays</span>
+  </div>
+
+  <div class="grid grid--3" data-results></div>
+
+</main>
+
+<footer class="footer" data-footer></footer>
+
+<script type="module" src="/js/stays.js"></script>
+</body>
+</html>

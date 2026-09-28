@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--meta-->
+<meta name="theme-color" content="#1a1410">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="phead wrap">
+  <nav class="crumbs rise" style="--d:120ms"><a href="/">Lull</a><span>/</span><span>Journal</span></nav>
+  <div class="phead__row">
+    <div>
+      <h1 class="h-lg phead__title" data-words>Field notes and method.</h1>
+      <p class="lede phead__lede rise" style="--d:300ms">
+        Six pieces on how we work and what we have learned sleeping in places that are difficult to reach.
+        No listicles, no destination guides.
+      </p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" style="padding-bottom:clamp(72px,9vw,140px)">
+  <div class="filters rise" style="--d:400ms">
+    <div class="filters__group" data-filter-cat>
+      <button class="chip" type="button" data-value="" aria-pressed="true">Everything</button>
+    </div>
+    <span class="filters__count" data-count-label></span>
+  </div>
+  <div data-posts></div>
+</main>
+
+<footer class="footer" data-footer></footer>
+
+<script type="module" src="/js/journal.js"></script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+[
+  {
+    "slug": "rorbu-nine",
+    "name": "Rorbu Nine",
+    "destination": "lofoten",
+    "type": "Cabin",
+    "sleeps": 4,
+    "bedrooms": 2,
+    "minNights": 3,
+    "pricePerNight": 340,
+    "currency": "EUR",
+    "rating": 4.9,
+    "reviews": 68,
+    "featured": true,
+    "tone": [
+      "#25404f",
+      "#d99a63"
+    ],
+    "blurb": "A red fisherman's cabin on stilts, twenty metres out over the water.",
+    "description": [
+      "Rorbu Nine is the last cabin on a wooden jetty in a working fishing village of ninety people. It was built in 1954 to house cod crews and rebuilt in 2019 by an architect who kept the frame, the tar, and the smell of the sea, and threw out everything else.",
+      "The living room is one wall of glass facing the sound. In February the northern lights come through it without you having to stand up. In June the sun circles the horizon and never quite sets, so the blackout curtains are not decorative.",
+      "You cook here. There is a good kitchen, a wood stove, and a fish market four minutes' walk along the pier that sells whatever came in that morning."
+    ],
+    "features": [
+      "Wood-fired sauna",
+      "Sea-facing glass wall",
+      "Full kitchen",
+      "Underfloor heating",
+      "Rowing boat included",
+      "No television"
+    ],
+    "theCatch": "The road in is single-track and unlit. In winter you will want a car with proper tyres, and you should plan to arrive before dark.",
+    "gettingThere": "Fly to Leknes, then 35 minutes by road. We arrange the car.",
+    "views": 1420,
+    "image": "stay-rorbu-nine",
+    "alt": "Still water in Austnesfjorden with snow on the ridges behind, Lofoten"
+  },
+  {
+    "slug": "casa-corvo",
+    "name": "Casa Corvo",
+    "destination": "alentejo",
+    "type": "Farmhouse",
+    "sleeps": 6,
+    "bedrooms": 3,
+    "minNights": 4,
+    "pricePerNight": 410,
+    "currency": "EUR",
+    "rating": 4.8,
+    "reviews": 94,
+    "featured": true,
+    "tone": [
+      "#6a4c2f",
+      "#e8bd82"
+    ],
+    "blurb": "A restored monte with thick walls, a long table, and forty hectares of cork oak.",
+    "description": [
+      "Casa Corvo has been standing since the 1780s and has the walls to prove it — nearly a metre of whitewashed stone that keeps the inside at twenty degrees through an Alentejo August without air conditioning.",
+      "The heart of the house is the courtyard: a fig tree, a long zinc table, and a wood oven that the caretaker will fire for you with a day's notice. Most guests eat every meal out there and stop making plans by the second afternoon.",
+      "The land is working land. There are cork oaks under harvest rotation, a few dozen sheep, and a pool cut into the slope that looks out over all of it."
+    ],
+    "features": [
+      "Salt-water pool",
+      "Wood-fired bread oven",
+      "Courtyard with fig tree",
+      "Caretaker on the estate",
+      "Wine cellar stocked locally",
+      "Bicycles"
+    ],
+    "theCatch": "Nearest shop is fourteen kilometres. We stock the kitchen before you arrive, but a spontaneous run for anything is a thirty-minute round trip.",
+    "gettingThere": "Fly to Lisbon, then 2h 10m by road. Self-drive recommended.",
+    "views": 2110,
+    "image": "stay-casa-corvo",
+    "alt": "Cork oaks scattered across dry grazing land near Castro Verde, Alentejo"
+  },
+  {
+    "slug": "kumano-house",
+    "name": "Kumano House",
+    "destination": "kii-peninsula",
+    "type": "Ryokan",
+    "sleeps": 2,
+    "bedrooms": 1,
+    "minNights": 2,
+    "pricePerNight": 520,
+    "currency": "EUR",
+    "rating": 5,
+    "reviews": 41,
+    "featured": true,
+    "tone": [
+      "#25392f",
+      "#9dbb92"
+    ],
+    "blurb": "Two rooms above a river, a cypress bath, and dinner cooked by the owner.",
+    "description": [
+      "A hundred-year-old timber house on the Kumano Kodo pilgrimage route, run by a couple who took it over in 2016 and let exactly two guests stay at a time.",
+      "The bath is hinoki cypress, filled from a spring that comes out of the hillside at forty-one degrees. It faces the river through a sliding screen that you will leave open regardless of the weather.",
+      "Dinner is kaiseki, nine or ten courses, built around whatever the mountains and the coast produced that week. It is served at seven and it is the reason most people extend."
+    ],
+    "features": [
+      "Private onsen bath",
+      "Kaiseki dinner included",
+      "Tatami rooms",
+      "Futon bedding",
+      "Trailhead five minutes away",
+      "English spoken"
+    ],
+    "theCatch": "Two guests, no exceptions, and the house closes for three weeks each February. Book early — it is the hardest room on our list to get.",
+    "gettingThere": "Fly to Osaka, then 2h 40m by train and local bus. Transfer arranged.",
+    "views": 3050,
+    "image": "stay-kumano-house",
+    "alt": "A wooded slope opening onto an inlet, Kumano Kodo, Kii Peninsula"
+  },
+  {
+    "slug": "salina-cove",
+    "name": "Salina Cove",
+    "destination": "aeolian-islands",
+    "type": "Villa",
+    "sleeps": 5,
+    "bedrooms": 3,
+    "minNights": 5,
+    "pricePerNight": 620,
+    "currency": "EUR",
+    "rating": 4.7,
+    "reviews": 57,
+    "featured": true,
+    "tone": [
+      "#39323e",
+      "#e3906a"
+    ],
+    "blurb": "Whitewashed terraces stepping down to a private swimming rock.",
+    "description": [
+      "Built into the cliff on Salina's quiet north side, the house is really five terraces connected by outdoor stairs. Bedrooms at the bottom, kitchen in the middle, and at the top a pergola of caper vines where you will end up every evening.",
+      "Twenty-two steps below the lowest terrace there is a flat volcanic rock and a ladder into eight metres of clear water. It is yours; nobody else can reach it by land.",
+      "Stromboli is visible from the pergola. After dark it does something roughly every twenty minutes and it never gets old."
+    ],
+    "features": [
+      "Private swimming rock",
+      "Caper-vine pergola",
+      "Outdoor kitchen",
+      "Stromboli view",
+      "Boat on request",
+      "Air conditioning"
+    ],
+    "theCatch": "The house is entirely stairs — around ninety between the road and the water. It rules out anyone who would rather not do that twice a day.",
+    "gettingThere": "Fly to Catania, then 3h by road and hydrofoil. Ferry timings matter; we plan them.",
+    "views": 2680,
+    "image": "stay-salina-cove",
+    "alt": "A whitewashed town stepping down to a harbour, Aeolian Islands"
+  },
+  {
+    "slug": "observatory-lodge",
+    "name": "Observatory Lodge",
+    "destination": "atacama",
+    "type": "Lodge",
+    "sleeps": 2,
+    "bedrooms": 1,
+    "minNights": 3,
+    "pricePerNight": 580,
+    "currency": "EUR",
+    "rating": 4.9,
+    "reviews": 112,
+    "featured": true,
+    "tone": [
+      "#54372f",
+      "#eec295"
+    ],
+    "blurb": "A single adobe room at 2,900 metres with a roof that opens.",
+    "description": [
+      "One room, built from local adobe and set on its own eight kilometres from the nearest lodge. The point of it is the ceiling: a segment of the roof retracts, and the bed is on a track that rolls under the opening.",
+      "The Atacama is the driest desert on earth and this is one of the least light-polluted valleys in it. On a clear night — and roughly three hundred a year are clear — the Milky Way casts a shadow.",
+      "There is a telescope, and someone who knows how to use it will come out on your first evening and set you up."
+    ],
+    "features": [
+      "Retracting roof",
+      "Telescope and guide",
+      "Adobe construction",
+      "Solar and battery",
+      "Breakfast delivered",
+      "Heated floors"
+    ],
+    "theCatch": "You are at 2,900 metres. The first night is usually a poor one for sleep, which is why we do not sell a two-night stay here.",
+    "gettingThere": "Fly to Calama, then 1h 20m by road. Driver included.",
+    "views": 4230,
+    "image": "stay-observatory-lodge",
+    "alt": "Star trails circling above desert cacti, Atacama"
+  },
+  {
+    "slug": "hraun-cabin",
+    "name": "Hraun Cabin",
+    "destination": "west-fjords",
+    "type": "Cabin",
+    "sleeps": 3,
+    "bedrooms": 1,
+    "minNights": 3,
+    "pricePerNight": 295,
+    "currency": "EUR",
+    "rating": 4.6,
+    "reviews": 38,
+    "featured": false,
+    "tone": [
+      "#2e414b",
+      "#a9bfbc"
+    ],
+    "blurb": "Black timber, one road in, and a geothermal pool cut into the beach.",
+    "description": [
+      "A small black-clad cabin at the end of a fjord that has one farm, one cabin, and a road that officially closes in October.",
+      "Two hundred metres down the shore there is a stone pool fed by a hot spring, built by a farmer in the 1950s and maintained by nobody in particular. It holds around thirty-eight degrees year round and you will almost certainly have it to yourself.",
+      "Inside: a stove, three good beds, and a window seat that faces the water. That is genuinely the whole inventory."
+    ],
+    "features": [
+      "Geothermal shore pool",
+      "Wood stove",
+      "Window seat",
+      "Kitchen",
+      "No wifi",
+      "Aurora season Sep–Apr"
+    ],
+    "theCatch": "There is no mobile signal and no wifi. There is a satellite phone for emergencies and that is the extent of your connection to anything.",
+    "gettingThere": "Fly to Ísafjörður, then 1h 10m by road. 4×4 essential outside summer.",
+    "views": 1890,
+    "image": "stay-hraun-cabin",
+    "alt": "A broad shallow shoreline under grey cloud, Dýrafjörður, Westfjords"
+  },
+  {
+    "slug": "cill-rialaig",
+    "name": "Cill Cottage",
+    "destination": "kerry",
+    "type": "Cottage",
+    "sleeps": 4,
+    "bedrooms": 2,
+    "minNights": 3,
+    "pricePerNight": 260,
+    "currency": "EUR",
+    "rating": 4.7,
+    "reviews": 83,
+    "featured": false,
+    "tone": [
+      "#2b402f",
+      "#b3c493"
+    ],
+    "blurb": "A stone cottage on a headland with the Atlantic on three sides.",
+    "description": [
+      "Nineteenth-century, abandoned in the 1950s, rebuilt stone by stone with the original footprint intact. Low ceilings, deep windows, a half-door that is genuinely useful when the weather turns.",
+      "The headland it sits on points southwest and catches everything the Atlantic sends. On a clear evening you can see the Skelligs; on most others you can see about forty metres and it is somehow better.",
+      "There is a turf fire, a stack of books left by twenty years of guests, and a pub with music four kilometres inland."
+    ],
+    "features": [
+      "Turf fire",
+      "Half-door",
+      "Sea on three sides",
+      "Books left by guests",
+      "Walking from the door",
+      "Dogs welcome"
+    ],
+    "theCatch": "It rains. Not occasionally — this is one of the wettest coastlines in Europe, and the stay only works if that sounds appealing rather than survivable.",
+    "gettingThere": "Fly to Kerry, then 1h 15m by road. Self-drive.",
+    "views": 1560,
+    "image": "stay-cill-rialaig",
+    "alt": "A grassy headland above the Atlantic on the Ring of Kerry"
+  },
+  {
+    "slug": "sand-camp",
+    "name": "Sand Camp",
+    "destination": "kalahari",
+    "type": "Camp",
+    "sleeps": 2,
+    "bedrooms": 1,
+    "minNights": 3,
+    "pricePerNight": 740,
+    "currency": "EUR",
+    "rating": 4.9,
+    "reviews": 64,
+    "featured": true,
+    "tone": [
+      "#64382a",
+      "#efb277"
+    ],
+    "blurb": "A canvas suite on a private reserve, and a bed they roll outside at dusk.",
+    "description": [
+      "Six tents on 220,000 hectares, which works out at roughly one guest per thirty thousand. The camp runs on solar, sits on red Kalahari sand, and does not have a fence.",
+      "Each tent has a proper bathroom, a plunge pool, and a second bed on the deck under a mosquito net. Most people use the inside one about twice.",
+      "Guiding is done by trackers who grew up on this land. You will see brown hyena, meerkat colonies, and — if the season cooperates — black-maned lion."
+    ],
+    "features": [
+      "Star bed on deck",
+      "Private plunge pool",
+      "All meals and guiding",
+      "Solar powered",
+      "San tracker guides",
+      "Unfenced reserve"
+    ],
+    "theCatch": "Unfenced means unfenced. After dark you do not walk between tents alone — a guide escorts you, every time, and that is not negotiable.",
+    "gettingThere": "Fly to Maun, then 50m light aircraft. Charter included.",
+    "views": 3720,
+    "image": "stay-sand-camp",
+    "alt": "A wildebeest in silhouette against a burning sunset sky, Kalahari"
+  },
+  {
+    "slug": "nusfjord-loft",
+    "name": "Nusfjord Loft",
+    "destination": "lofoten",
+    "type": "Loft",
+    "sleeps": 2,
+    "bedrooms": 1,
+    "minNights": 2,
+    "pricePerNight": 285,
+    "currency": "EUR",
+    "rating": 4.5,
+    "reviews": 51,
+    "featured": false,
+    "tone": [
+      "#2b4756",
+      "#c9a173"
+    ],
+    "blurb": "The upper floor of a cod-drying house, kept exactly as awkward as it was.",
+    "description": [
+      "A conversion of a nineteenth-century drying loft in a preserved fishing village. The beams are original and low enough that tall guests learn quickly.",
+      "One long room with a bed at one end and a window at the other, looking down the harbour at boats that still go out. In spring the racks outside are hung with cod and the smell is a real, non-metaphorical part of the experience.",
+      "Small, cheap by Lofoten standards, and the best base on the islands for anyone who mostly wants to be outside."
+    ],
+    "features": [
+      "Harbour view",
+      "Original beams",
+      "Kitchenette",
+      "Drying rack season Feb–May",
+      "Village on foot",
+      "Heated"
+    ],
+    "theCatch": "Between February and May the cod racks are full and the village smells strongly of drying fish. Some guests love it. It is not subtle.",
+    "gettingThere": "Fly to Leknes, then 40 minutes by road.",
+    "views": 980,
+    "image": "stay-nusfjord-loft",
+    "alt": "Dry grass and boulders on the shore at Gimsøystraumen, mountains beyond, Lofoten"
+  },
+  {
+    "slug": "monte-figo",
+    "name": "Monte Figo",
+    "destination": "alentejo",
+    "type": "Cottage",
+    "sleeps": 2,
+    "bedrooms": 1,
+    "minNights": 3,
+    "pricePerNight": 230,
+    "currency": "EUR",
+    "rating": 4.6,
+    "reviews": 76,
+    "featured": false,
+    "tone": [
+      "#755434",
+      "#e6c391"
+    ],
+    "blurb": "A one-room shepherd's cottage with a plunge pool and no neighbours.",
+    "description": [
+      "The smallest thing on our list and one of the most booked. A single whitewashed room with a bed, a stove, a table, and a door that opens onto wheat.",
+      "The pool is four metres of cold water cut into the terrace, which in July is the entire point. There is a fig tree over it that produces more than two people can eat.",
+      "It belongs to the family who farm the land around it, and the grandmother will leave bread and cheese on the step if you tell her you are arriving late."
+    ],
+    "features": [
+      "Plunge pool",
+      "Wood stove",
+      "Outdoor shower",
+      "Fig tree",
+      "Bread left on arrival",
+      "Total dark at night"
+    ],
+    "theCatch": "One room means one room — the bathroom is separate and outside, twelve steps across the terrace. In January that is a genuine commitment.",
+    "gettingThere": "Fly to Lisbon, then 2h 30m by road.",
+    "views": 1340,
+    "image": "stay-monte-figo",
+    "alt": "Rolling cultivated fields under a wide blue sky, Alentejo"
+  },
+  {
+    "slug": "river-house-ryokan",
+    "name": "Kawa Annex",
+    "destination": "kii-peninsula",
+    "type": "Ryokan",
+    "sleeps": 4,
+    "bedrooms": 2,
+    "minNights": 2,
+    "pricePerNight": 390,
+    "currency": "EUR",
+    "rating": 4.8,
+    "reviews": 59,
+    "featured": false,
+    "tone": [
+      "#2a3f36",
+      "#a6c09a"
+    ],
+    "blurb": "A modern annex on the riverbank, built for people who want tatami and a real bed.",
+    "description": [
+      "Attached to a fourth-generation ryokan but run as its own building, with two rooms that pair tatami floors with proper western beds — the compromise most first-time guests actually want.",
+      "The river runs directly below the window and there is a rotenburo, an outdoor rock bath, on the terrace above it. Both are on all night.",
+      "Meals are taken in the main house. Breakfast is grilled fish, rice, miso, and about six small things you will not be able to identify but should eat anyway."
+    ],
+    "features": [
+      "Outdoor rock bath",
+      "Tatami and western beds",
+      "Half board",
+      "Riverside terrace",
+      "Trail access",
+      "Family-run since 1901"
+    ],
+    "theCatch": "The annex shares the main house's dining schedule. Dinner is at 18:30 and it does not move, which surprises people arriving from a long flight.",
+    "gettingThere": "Fly to Osaka, then 3h by train. Transfer from the station arranged.",
+    "views": 1720,
+    "image": "stay-river-house-ryokan",
+    "alt": "Moss and tall cedar in dense forest on the Kumano Kodo"
+  },
+  {
+    "slug": "vulcano-shack",
+    "name": "Vulcano Shack",
+    "destination": "aeolian-islands",
+    "type": "Cottage",
+    "sleeps": 2,
+    "bedrooms": 1,
+    "minNights": 4,
+    "pricePerNight": 310,
+    "currency": "EUR",
+    "rating": 4.4,
+    "reviews": 44,
+    "featured": false,
+    "tone": [
+      "#3d3540",
+      "#dd9c78"
+    ],
+    "blurb": "Two rooms on black sand, ten minutes' walk from anywhere with a road.",
+    "description": [
+      "A converted fisherman's store on the black beach at Vulcano, painted white inside and left rough everywhere else.",
+      "You are on volcanic sand that stays warm well after sunset, and the sulphur mud baths — famous, medicinal, and genuinely unpleasant to smell — are a fifteen-minute walk north.",
+      "It is the cheapest way to spend a week in the Aeolians without sharing a beach with anybody."
+    ],
+    "features": [
+      "Black sand beach",
+      "Outdoor shower",
+      "Kitchenette",
+      "Terrace",
+      "Kayaks",
+      "Fans, no A/C"
+    ],
+    "theCatch": "Vulcano smells of sulphur. It fades after a day and a half for most people. For some it never does, and we would rather say so now.",
+    "gettingThere": "Fly to Catania, then 2h 30m by road and hydrofoil.",
+    "views": 1120,
+    "image": "stay-vulcano-shack",
+    "alt": "Sheer volcanic cliffs dropping straight into the sea, Aeolian Islands"
+  },
+  {
+    "slug": "altiplano-yurt",
+    "name": "Altiplano Yurt",
+    "destination": "atacama",
+    "type": "Camp",
+    "sleeps": 3,
+    "bedrooms": 1,
+    "minNights": 2,
+    "pricePerNight": 340,
+    "currency": "EUR",
+    "rating": 4.5,
+    "reviews": 29,
+    "featured": false,
+    "tone": [
+      "#5b4034",
+      "#e9bd93"
+    ],
+    "blurb": "A felt-lined yurt on a salt flat edge, warm at night and blinding at dawn.",
+    "description": [
+      "A proper Mongolian-frame yurt, insulated in wool felt and set on a timber deck at the edge of the Salar. It holds heat well, which matters when the temperature drops twenty-five degrees after sunset.",
+      "Sunrise over the salt is the reason to be here, and the deck faces it directly. Breakfast arrives in a basket at whatever time you ask for.",
+      "Basic by design — a good bed, a stove, a bathroom in a separate structure, and nothing else at all."
+    ],
+    "features": [
+      "Wool-felt insulation",
+      "Wood stove",
+      "Sunrise deck",
+      "Breakfast basket",
+      "Flamingo lagoons nearby",
+      "Shared bathroom block"
+    ],
+    "theCatch": "The bathroom is a separate building, about twenty metres away, and nights fall below freezing. Slippers and a coat live by the door for a reason.",
+    "gettingThere": "Fly to Calama, then 1h 40m by road.",
+    "views": 860,
+    "image": "stay-altiplano-yurt",
+    "alt": "Miscanti lagoon below volcanic peaks near San Pedro de Atacama"
+  },
+  {
+    "slug": "strandgata",
+    "name": "Strandgata Six",
+    "destination": "west-fjords",
+    "type": "Townhouse",
+    "sleeps": 6,
+    "bedrooms": 3,
+    "minNights": 2,
+    "pricePerNight": 380,
+    "currency": "EUR",
+    "rating": 4.6,
+    "reviews": 47,
+    "featured": false,
+    "tone": [
+      "#31444e",
+      "#b3c6c2"
+    ],
+    "blurb": "A corrugated-iron townhouse in a fjord town of two thousand people.",
+    "description": [
+      "Ísafjörður is the closest thing the Westfjords have to a city, which means a bakery, three restaurants, and a bookshop. This house is on the harbour street, painted deep green, built in 1912.",
+      "Three bedrooms, a large kitchen, and a sitting room with a bay window over the water. It is the practical base for anyone driving the fjords who wants a hot shower and a proper dinner at the end of it.",
+      "Everything in town is within a six-minute walk, including the pool, which is outdoors, heated, and open until ten."
+    ],
+    "features": [
+      "Harbour-front",
+      "Three bedrooms",
+      "Large kitchen",
+      "Walk to town pool",
+      "Washer and dryer",
+      "Parking"
+    ],
+    "theCatch": "It is a town house on a working harbour. Boats start moving around five in the morning and the walls are 1912 walls.",
+    "gettingThere": "Fly to Ísafjörður, then 8 minutes by road.",
+    "views": 1010,
+    "image": "stay-strandgata",
+    "alt": "Coloured houses along the harbour at Suðureyri, Westfjords"
+  }
+]

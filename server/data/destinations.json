@@ -1,0 +1,154 @@
+[
+  {
+    "slug": "lofoten",
+    "name": "Lofoten",
+    "country": "Norway",
+    "region": "Arctic Norway",
+    "lat": 68.15,
+    "lon": 13.61,
+    "tagline": "Sea cliffs, low sun, and nobody for miles.",
+    "summary": "An archipelago that sits above the Arctic Circle and still stays green. Fishing villages on stilts, granite walls straight out of the water, and light that refuses to leave in summer.",
+    "bestMonths": "Feb–Apr, Jun–Aug",
+    "flightTime": "3h 40m from Oslo",
+    "tone": [
+      "#2f4f5e",
+      "#c98a5a"
+    ],
+    "accent": "#4fb3c4",
+    "image": "dest-lofoten",
+    "alt": "A red-roofed house on a rocky shore below snow-covered peaks across Austnesfjorden, Lofoten"
+  },
+  {
+    "slug": "alentejo",
+    "name": "Alentejo",
+    "country": "Portugal",
+    "region": "Southern Iberia",
+    "lat": 38.02,
+    "lon": -7.87,
+    "tagline": "Cork oaks, long lunches, and heat that slows you down.",
+    "summary": "Portugal's quiet interior. Wheat plains, whitewashed hill towns, and a pace that hasn't changed much since the vines went in. The nearest traffic light is usually an hour away.",
+    "bestMonths": "Apr–Jun, Sep–Oct",
+    "flightTime": "1h 30m from Lisbon",
+    "tone": [
+      "#7a5c3a",
+      "#e0b478"
+    ],
+    "accent": "#d9a05b",
+    "image": "dest-alentejo",
+    "alt": "Two lone trees in an open wheat plain under a pale sky, Alentejo"
+  },
+  {
+    "slug": "kii-peninsula",
+    "name": "Kii Peninsula",
+    "country": "Japan",
+    "region": "Kansai",
+    "lat": 33.89,
+    "lon": 135.83,
+    "tagline": "Cedar forest, pilgrim trails, and river mist at dawn.",
+    "summary": "South of Osaka the country folds into mountains and stops. Thousand-year pilgrimage routes, hot springs cut into riverbeds, and ryokan where dinner arrives in eleven small dishes.",
+    "bestMonths": "Mar–May, Oct–Nov",
+    "flightTime": "2h 10m from Osaka",
+    "tone": [
+      "#2c4438",
+      "#8fae86"
+    ],
+    "accent": "#6fae91",
+    "image": "dest-kii-peninsula",
+    "alt": "Forested ridges layered into cloud along the Kumano Kodo, Kii Peninsula"
+  },
+  {
+    "slug": "aeolian-islands",
+    "name": "Aeolian Islands",
+    "country": "Italy",
+    "region": "Tyrrhenian Sea",
+    "lat": 38.49,
+    "lon": 14.94,
+    "tagline": "Volcanic rock, caper fields, and boats instead of roads.",
+    "summary": "Seven islands off Sicily's north coast, most of them without a car worth mentioning. Black sand, white cubic houses, and an active volcano that puts on a show after dark.",
+    "bestMonths": "May–Jun, Sep",
+    "flightTime": "2h 00m from Naples",
+    "tone": [
+      "#3a3340",
+      "#d98d6a"
+    ],
+    "accent": "#e08b62",
+    "image": "dest-aeolian-islands",
+    "alt": "The sun setting over the sea behind low island silhouettes, Aeolian Islands"
+  },
+  {
+    "slug": "atacama",
+    "name": "Atacama",
+    "country": "Chile",
+    "region": "Andean Altiplano",
+    "lat": -23.86,
+    "lon": -68.2,
+    "tagline": "The driest place on earth, and the clearest sky above it.",
+    "summary": "Salt flats, geyser fields, and altitude that makes the horizon feel curved. At night the Milky Way is bright enough to read the ground by.",
+    "bestMonths": "Mar–May, Sep–Nov",
+    "flightTime": "2h 00m from Santiago",
+    "tone": [
+      "#5c3b34",
+      "#e8b98e"
+    ],
+    "accent": "#dd9a63",
+    "image": "dest-atacama",
+    "alt": "Eroded rock formations and pale mountains at Catedrales de Tara, Atacama"
+  },
+  {
+    "slug": "west-fjords",
+    "name": "Westfjords",
+    "country": "Iceland",
+    "region": "North Atlantic",
+    "lat": 65.83,
+    "lon": -23.13,
+    "tagline": "The part of Iceland the buses never reach.",
+    "summary": "A fist of land in the northwest, connected by one road that closes when it feels like it. Bird cliffs, hot pots on empty beaches, and roughly seven thousand people in an area the size of Wales.",
+    "bestMonths": "Jun–Aug",
+    "flightTime": "45m from Reykjavík",
+    "tone": [
+      "#33454e",
+      "#9fb6b3"
+    ],
+    "accent": "#5fb0b8",
+    "image": "dest-west-fjords",
+    "alt": "Dýrafjörður lying mirror-flat between low headlands, Westfjords"
+  },
+  {
+    "slug": "kerry",
+    "name": "Kerry",
+    "country": "Ireland",
+    "region": "Wild Atlantic Way",
+    "lat": 51.88,
+    "lon": -10.24,
+    "tagline": "Weather that changes four times before lunch.",
+    "summary": "Peninsulas reaching into the Atlantic, stone forts older than most countries, and a coastline that rewards anyone willing to drive slowly with the windows down.",
+    "bestMonths": "May–Sep",
+    "flightTime": "1h 20m from Dublin",
+    "tone": [
+      "#2f4438",
+      "#a8b98a"
+    ],
+    "accent": "#7fb98f",
+    "image": "dest-kerry",
+    "alt": "Mist lying across green fields below a dark hill, Dingle Peninsula, Kerry"
+  },
+  {
+    "slug": "kalahari",
+    "name": "Kalahari",
+    "country": "Botswana",
+    "region": "Southern Africa",
+    "lat": -22.5,
+    "lon": 23,
+    "tagline": "Red sand, low thorn, and silence with a floor to it.",
+    "summary": "Not a desert in the empty sense — a semi-arid savanna that turns green after rain and holds some of the last true dark-sky country on the continent.",
+    "bestMonths": "May–Sep",
+    "flightTime": "1h 30m from Maun",
+    "tone": [
+      "#6b3f2e",
+      "#e5a870"
+    ],
+    "accent": "#e09a55",
+    "image": "dest-kalahari",
+    "alt": "A giraffe in silhouette against a golden sunrise, Kalahari"
+  }
+]

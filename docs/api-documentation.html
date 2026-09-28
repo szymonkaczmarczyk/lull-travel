@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LULL API — dokumentacja</title>
+<style>
+  :root {
+    --ink: #1f2937;
+    --muted: #4b5563;
+    --line: #d1d5db;
+    --head: #eef2fb;
+    --blue: #2563eb;
+    --code-bg: #111827;
+    --code-ink: #e5e7eb;
+    --chip: #f1f3f7;
+    --get: #2563eb;
+    --post: #059669;
+    --put: #d97706;
+    --patch: #7c3aed;
+    --delete: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--ink);
+    font: 14px/1.6 "Segoe UI", "Noto Sans", system-ui, -apple-system, sans-serif;
+  }
+  main { max-width: 820px; margin: 0 auto; padding: 56px 40px 80px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; }
+  h2 {
+    font-size: 20px;
+    margin: 0 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--blue);
+  }
+  h3 { font-size: 16px; margin: 28px 0 10px; }
+  h4 { color: var(--blue); font-size: 13.5px; margin: 22px 0 8px; }
+  p { margin: 0 0 12px; }
+  .lead { color: var(--muted); margin-bottom: 18px; }
+  code {
+    font: 12.5px/1.5 "Cascadia Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+    background: var(--chip);
+    border-radius: 4px;
+    padding: 1px 6px;
+  }
+  pre {
+    margin: 0 0 16px;
+    padding: 16px 18px;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 8px;
+    font: 12.5px/1.6 "Cascadia Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 13.5px; }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--head); font-weight: 600; }
+  td:first-child code { white-space: nowrap; }
+  td table { margin: 8px 0 4px; }
+  .endpoint {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+  .endpoint p:last-child { margin-bottom: 0; }
+  .endpoint__line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .badge {
+    display: inline-block;
+    min-width: 54px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .badge--get { background: var(--get); }
+  .badge--post { background: var(--post); }
+  .badge--put { background: var(--put); }
+  .badge--patch { background: var(--patch); }
+  .badge--delete { background: var(--delete); }
+  .lock { font-size: 12px; color: var(--muted); }
+  section { margin-top: 44px; }
+  .page { break-before: page; }
+  .toc { columns: 2; column-gap: 32px; padding-left: 18px; margin: 0 0 8px; }
+  .toc li { break-inside: avoid; margin-bottom: 2px; }
+  .note { color: var(--muted); font-size: 13px; }
+  @page { size: A4; margin: 18mm 16mm; }
+  @media print {
+    main { padding: 0; max-width: none; }
+    section { margin-top: 0; }
+    pre, table, .endpoint { break-inside: avoid; }
+    h2, h3, h4 { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<h1>LULL API — dokumentacja</h1>
+<p class="lead">
+  Endpointy publiczne: <code>/api/stats</code>, <code>/api/stays</code>, <code>/api/destinations</code>,
+  <code>/api/journal</code>, <code>/api/enquiries</code><br>
+  Endpointy panelu administracyjnego: <code>/api/admin/*</code>
+</p>
+<pre>https://&lt;twoja-domena&gt;
+http://localhost:3000   (lokalnie)</pre>
+
+<h3>Spis treści</h3>
+<ol class="toc">
+  <li><a href="#auth">Autoryzacja</a></li>
+  <li><a href="#conv">Konwencje i błędy</a></li>
+  <li><a href="#stats">GET /api/stats</a></li>
+  <li><a href="#stays">GET /api/stays</a></li>
+  <li><a href="#stay">GET /api/stays/:slug</a></li>
+  <li><a href="#dests">GET /api/destinations</a></li>
+  <li><a href="#dest">GET /api/destinations/:slug</a></li>
+  <li><a href="#journal">GET /api/journal</a></li>
+  <li><a href="#article">GET /api/journal/:slug</a></li>
+  <li><a href="#enq-post">POST /api/enquiries</a></li>
+  <li><a href="#enq-count">GET /api/enquiries/count</a></li>
+  <li><a href="#login">POST /api/admin/login · logout · me</a></li>
+  <li><a href="#overview">GET /api/admin/overview</a></li>
+  <li><a href="#a-enqs">GET /api/admin/enquiries</a></li>
+  <li><a href="#a-csv">GET /api/admin/enquiries.csv</a></li>
+  <li><a href="#a-enq">GET /api/admin/enquiries/:id</a></li>
+  <li><a href="#a-patch">PATCH /api/admin/enquiries/:id</a></li>
+  <li><a href="#a-notes">POST …/notes · …/forward · DELETE</a></li>
+  <li><a href="#a-content">/api/admin/schema · /content</a></li>
+  <li><a href="#a-settings">/api/admin/settings</a></li>
+  <li><a href="#a-outbox">GET /api/admin/outbox</a></li>
+</ol>
+
+<section id="auth">
+  <h2>Autoryzacja</h2>
+  <p>
+    Endpointy publiczne (<code>/api/stats</code>, <code>/api/stays</code>, <code>/api/destinations</code>,
+    <code>/api/journal</code>, <code>/api/enquiries</code>) nie wymagają żadnych nagłówków ani kluczy.
+    <code>POST /api/enquiries</code> jest ograniczony do <strong>5 żądań na godzinę z jednego adresu IP</strong>.
+  </p>
+  <p>
+    Endpointy <code>/api/admin/*</code> wymagają sesji. Sesję otwiera <code>POST /api/admin/login</code>,
+    który ustawia ciasteczko:
+  </p>
+  <table>
+    <tr><th>Ciasteczko</th><th>Opis</th></tr>
+    <tr><td><code>lull_admin</code></td><td>Token sesji podpisany HMAC-SHA256. Flagi: <code>HttpOnly</code>, <code>SameSite=Strict</code>, <code>Path=/</code>, <code>Secure</code> po HTTPS. Ważny 12 godzin.</td></tr>
+  </table>
+  <p>Wymagania dla żądań do <code>/api/admin/*</code>:</p>
+  <table>
+    <tr><th>Nagłówek</th><th>Opis</th></tr>
+    <tr><td><code>Cookie</code></td><td><code>lull_admin=…</code> — przeglądarka i <code>curl -b</code> dołączają je automatycznie.</td></tr>
+    <tr><td><code>Content-Type</code></td><td><code>application/json</code> dla każdego żądania z treścią (POST, PUT, PATCH).</td></tr>
+    <tr><td><code>Origin</code></td><td>Opcjonalny. Jeśli jest wysłany przy POST/PUT/PATCH/DELETE, musi wskazywać ten sam host co serwer — inaczej <code>403</code>.</td></tr>
+  </table>
+  <p>Przykład (curl) — logowanie i pierwsze żądanie z tą samą sesją:</p>
+<pre>curl -c cookies.txt -H 'Content-Type: application/json' \
+  -d '{"email":"admin@example.com","password":"…"}' \
+  https://&lt;twoja-domena&gt;/api/admin/login
+
+curl -b cookies.txt https://&lt;twoja-domena&gt;/api/admin/enquiries?status=new</pre>
+  <p>
+    Błąd autoryzacji → HTTP <code>401</code>, <code>{"error": "Sign in first."}</code>. Gdy panel jest wyłączony
+    (brak <code>ADMIN_EMAIL</code> / <code>ADMIN_PASSWORD</code> na serwerze) → HTTP <code>503</code>.
+    Logowanie jest ograniczone do <strong>10 prób na 15 minut z jednego IP</strong>.
+  </p>
+</section>
+
+<section id="conv" class="page">
+  <h2>Konwencje i błędy</h2>
+  <table>
+    <tr><th>Zasada</th><th>Opis</th></tr>
+    <tr><td>Format</td><td>Wszystkie odpowiedzi to JSON w UTF-8 (wyjątek: <code>/api/admin/enquiries.csv</code>).</td></tr>
+    <tr><td>Daty</td><td>ISO 8601 w UTC, np. <code>2026-09-28T14:30:41.228Z</code>. Pola dnia bez godziny: <code>YYYY-MM-DD</code>.</td></tr>
+    <tr><td>Ceny</td><td>Liczby całkowite w walucie z pola <code>currency</code> (<code>EUR</code>, <code>GBP</code>, <code>USD</code>), za noc.</td></tr>
+    <tr><td>Slug</td><td>Identyfikator w adresie: małe litery, cyfry, myślniki (<code>rorbu-nine</code>). Nie zmienia się po publikacji.</td></tr>
+    <tr><td>Zdjęcia</td><td>Pole <code>image</code> to nazwa pliku bez rozszerzenia. Adresy: <code>/img/card/{image}.jpg</code> (900 px) i <code>/img/card-sm/{image}.jpg</code> (500 px). Puste = brak zdjęcia.</td></tr>
+    <tr><td>Tony</td><td>Pole <code>tone</code> to para kolorów <code>[ciemny, jasny]</code> w hex, używana jako tło przed wczytaniem zdjęcia.</td></tr>
+    <tr><td>Maks. rozmiar treści</td><td>256 kB na żądanie.</td></tr>
+  </table>
+  <p>Każdy błąd ma ten sam kształt. Pole <code>fields</code> pojawia się tylko przy błędach walidacji:</p>
+<pre>{"error": "Validation failed.", "fields": {"email": "That email address does not look right."}}</pre>
+  <table>
+    <tr><th>Kod</th><th>Kiedy</th></tr>
+    <tr><td><code>400</code></td><td>Treść żądania nie jest poprawnym JSON-em.</td></tr>
+    <tr><td><code>401</code></td><td>Brak lub wygasła sesja admina; złe dane logowania.</td></tr>
+    <tr><td><code>403</code></td><td>Żądanie zmieniające dane z obcego <code>Origin</code>.</td></tr>
+    <tr><td><code>404</code></td><td>Nie ma takiego zasobu albo endpointu (<code>{"error": "No such endpoint."}</code>).</td></tr>
+    <tr><td><code>409</code></td><td>Konflikt — np. usuwany region jest wciąż używany przez stays.</td></tr>
+    <tr><td><code>413</code></td><td>Treść żądania większa niż 256 kB.</td></tr>
+    <tr><td><code>422</code></td><td>Walidacja nie przeszła; szczegóły w <code>fields</code> (klucz = nazwa pola).</td></tr>
+    <tr><td><code>429</code></td><td>Przekroczony limit; nagłówek <code>Retry-After</code> i pole <code>retryAfter</code> podają liczbę sekund.</td></tr>
+    <tr><td><code>500</code></td><td>Błąd serwera. Szczegóły tylko w logu serwera.</td></tr>
+    <tr><td><code>503</code></td><td>Panel admina wyłączony w konfiguracji serwera.</td></tr>
+  </table>
+</section>
+
+<section id="stats" class="page">
+  <h2>GET /api/stats</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/stats</code></div>
+    <p>Zbiorcze liczby o katalogu, używane przez liczniki na stronie głównej. Bez parametrów query.</p>
+  </div>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/stats</pre>
+  <h4>Odpowiedź — sukces</h4>
+<pre>{
+  "stays": 14,
+  "destinations": 8,
+  "countries": 8,
+  "articles": 6,
+  "fromPrice": 230,
+  "avgRating": 4.71,
+  "reviews": 863
+}</pre>
+  <h4>Znaczenie kluczy w odpowiedzi</h4>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>stays</code> / <code>destinations</code> / <code>articles</code></td><td>Liczba opublikowanych stays, regionów i artykułów.</td></tr>
+    <tr><td><code>countries</code></td><td>Liczba różnych krajów wśród regionów.</td></tr>
+    <tr><td><code>fromPrice</code></td><td>Najniższa cena za noc spośród wszystkich stays.</td></tr>
+    <tr><td><code>avgRating</code></td><td>Średnia ocena, zaokrąglona do dwóch miejsc.</td></tr>
+    <tr><td><code>reviews</code></td><td>Suma recenzji wszystkich stays.</td></tr>
+  </table>
+</section>
+
+<section id="stays" class="page">
+  <h2>GET /api/stays</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/stays</code></div>
+    <p>Lista stays z filtrami i sortowaniem. Każdy stay ma dołączony skrót swojego regionu.</p>
+  </div>
+  <h4>Query params</h4>
+  <table>
+    <tr><th>Parametr</th><th>Wymagany</th><th>Opis</th></tr>
+    <tr><td><code>destination</code></td><td>nie</td><td>Slug regionu, np. <code>lofoten</code>.</td></tr>
+    <tr><td><code>type</code></td><td>nie</td><td>Typ obiektu, bez rozróżniania wielkości liter, np. <code>cabin</code>, <code>farmhouse</code>.</td></tr>
+    <tr><td><code>maxPrice</code></td><td>nie</td><td>Maksymalna cena za noc (włącznie).</td></tr>
+    <tr><td><code>sleeps</code></td><td>nie</td><td>Minimalna liczba osób, które obiekt mieści.</td></tr>
+    <tr><td><code>q</code></td><td>nie</td><td>Szukanie w nazwie, opisie jednym zdaniem, typie i slugu regionu.</td></tr>
+    <tr><td><code>sort</code></td><td>nie</td><td>Kolejność (domyślnie <code>featured</code>):
+      <table>
+        <tr><th>Wartość</th><th>Znaczenie</th></tr>
+        <tr><td><code>featured</code></td><td>wyróżnione najpierw, potem wg oceny</td></tr>
+        <tr><td><code>price-asc</code></td><td>cena rosnąco</td></tr>
+        <tr><td><code>price-desc</code></td><td>cena malejąco</td></tr>
+        <tr><td><code>rating</code></td><td>ocena malejąco</td></tr>
+        <tr><td><code>sleeps</code></td><td>pojemność malejąco</td></tr>
+      </table>
+    </td></tr>
+  </table>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/stays?destination=lofoten&amp;sort=price-asc</pre>
+  <h4>Odpowiedź — sukces (skrócony przykład)</h4>
+<pre>{
+  "count": 2,
+  "total": 14,
+  "results": [
+    {
+      "slug": "nusfjord-loft",
+      "name": "Nusfjord Loft",
+      "destination": {
+        "slug": "lofoten", "name": "Lofoten", "country": "Norway",
+        "region": "Arctic Norway", "accent": "#4fb3c4"
+      },
+      "type": "Loft",
+      "sleeps": 2, "bedrooms": 1, "minNights": 2,
+      "pricePerNight": 285, "currency": "EUR",
+      "rating": 4.5, "reviews": 51, "views": 980, "featured": false,
+      "tone": ["#2b4756", "#c9a173"],
+      "blurb": "The upper floor of a cod-drying house, kept exactly as awkward as it was.",
+      "description": ["A conversion of a nineteenth-century drying loft …"],
+      "features": ["Harbour view", "Original beams"],
+      "theCatch": "Between February and May the cod racks are full …",
+      "gettingThere": "Fly to Leknes, then 40 minutes by road.",
+      "image": "stay-nusfjord-loft",
+      "alt": "Dry grass and boulders on the shore at Gimsøystraumen …"
+    }
+  ]
+}</pre>
+</section>
+
+<section class="page">
+  <h3 style="margin-top:0">Obiekt Stay — znaczenie kluczy</h3>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>count</code> / <code>total</code></td><td>Liczba wyników po filtrach / liczba wszystkich stays.</td></tr>
+    <tr><td><code>slug</code>, <code>name</code></td><td>Identyfikator i nazwa. Strona obiektu: <code>/stays/{slug}</code>.</td></tr>
+    <tr><td><code>destination</code></td><td>Skrót regionu: <code>slug</code>, <code>name</code>, <code>country</code>, <code>region</code>, <code>accent</code> (kolor akcentu). <code>null</code>, gdyby regionu nie było.</td></tr>
+    <tr><td><code>type</code></td><td>Rodzaj obiektu (Cabin, Farmhouse, Loft, Tent…).</td></tr>
+    <tr><td><code>sleeps</code> / <code>bedrooms</code> / <code>minNights</code></td><td>Pojemność, sypialnie, minimalna liczba nocy.</td></tr>
+    <tr><td><code>pricePerNight</code> / <code>currency</code></td><td>Cena za noc i waluta.</td></tr>
+    <tr><td><code>rating</code> / <code>reviews</code> / <code>views</code></td><td>Ocena 0–5, liczba recenzji, liczba wyświetleń.</td></tr>
+    <tr><td><code>featured</code></td><td>Czy obiekt jest wyróżniony (wpływa na sortowanie <code>featured</code>).</td></tr>
+    <tr><td><code>blurb</code></td><td>Opis w jednym zdaniu.</td></tr>
+    <tr><td><code>description</code></td><td>Tablica akapitów opisu.</td></tr>
+    <tr><td><code>features</code></td><td>Tablica udogodnień, po jednym na element.</td></tr>
+    <tr><td><code>theCatch</code></td><td>Uczciwy minus obiektu — pokazywany zawsze na stronie.</td></tr>
+    <tr><td><code>gettingThere</code></td><td>Jak dojechać.</td></tr>
+    <tr><td><code>image</code> / <code>alt</code> / <code>tone</code></td><td>Zdjęcie, jego opis i para kolorów — patrz „Konwencje”.</td></tr>
+  </table>
+</section>
+
+<section id="stay" class="page">
+  <h2>GET /api/stays/:slug</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/stays/{slug}</code></div>
+    <p>Jeden stay wraz z maksymalnie trzema powiązanymi (ten sam region albo ten sam typ).</p>
+  </div>
+  <h4>Parametry ścieżki</h4>
+  <table>
+    <tr><th>Parametr</th><th>Wymagany</th><th>Opis</th></tr>
+    <tr><td><code>slug</code></td><td>tak</td><td>Slug obiektu, np. <code>rorbu-nine</code>.</td></tr>
+  </table>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/stays/rorbu-nine</pre>
+  <h4>Odpowiedź — błąd (404)</h4>
+<pre>{"error": "No stay with that slug."}</pre>
+  <h4>Odpowiedź — sukces (skrócony przykład)</h4>
+<pre>{
+  "stay": { "slug": "rorbu-nine", "name": "Rorbu Nine", "destination": { … }, … },
+  "related": [
+    { "slug": "hraun-cabin", … },
+    { "slug": "nusfjord-loft", … }
+  ]
+}</pre>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>stay</code></td><td>Pełny obiekt Stay (jak w <code>/api/stays</code>).</td></tr>
+    <tr><td><code>related</code></td><td>Do 3 obiektów Stay z tego samego regionu lub tego samego typu, bez bieżącego.</td></tr>
+  </table>
+</section>
+
+<section id="dests" class="page">
+  <h2>GET /api/destinations</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/destinations</code></div>
+    <p>Lista wszystkich regionów z liczbą stays i najniższą ceną. Bez parametrów query.</p>
+  </div>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/destinations</pre>
+  <h4>Odpowiedź — sukces (skrócony przykład)</h4>
+<pre>{
+  "count": 8,
+  "results": [
+    {
+      "slug": "lofoten",
+      "name": "Lofoten",
+      "country": "Norway",
+      "region": "Arctic Norway",
+      "lat": 68.15, "lon": 13.61,
+      "tagline": "Sea cliffs, low sun, and nobody for miles.",
+      "summary": "An archipelago that sits above the Arctic Circle …",
+      "bestMonths": "Feb–Apr, Jun–Aug",
+      "flightTime": "3h 40m from Oslo",
+      "tone": ["#2f4f5e", "#c98a5a"],
+      "accent": "#4fb3c4",
+      "image": "dest-lofoten",
+      "alt": "A red-roofed house on a rocky shore …",
+      "stayCount": 2,
+      "fromPrice": 285
+    }
+  ]
+}</pre>
+  <h4>Znaczenie kluczy w odpowiedzi</h4>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>slug</code>, <code>name</code>, <code>country</code></td><td>Identyfikator, nazwa regionu, kraj. Strona: <code>/destinations/{slug}</code>.</td></tr>
+    <tr><td><code>region</code></td><td>Szerszy obszar geograficzny (np. Arctic Norway).</td></tr>
+    <tr><td><code>lat</code> / <code>lon</code></td><td>Współrzędne środka regionu.</td></tr>
+    <tr><td><code>tagline</code> / <code>summary</code></td><td>Hasło i krótki opis.</td></tr>
+    <tr><td><code>bestMonths</code> / <code>flightTime</code></td><td>Najlepsze miesiące i czas lotu — tekst do wyświetlenia.</td></tr>
+    <tr><td><code>accent</code></td><td>Kolor akcentu regionu (hex).</td></tr>
+    <tr><td><code>stayCount</code></td><td>Liczba stays w regionie.</td></tr>
+    <tr><td><code>fromPrice</code></td><td>Najniższa cena za noc w regionie; <code>null</code>, gdy region nie ma stays.</td></tr>
+  </table>
+</section>
+
+<section id="dest" class="page">
+  <h2>GET /api/destinations/:slug</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/destinations/{slug}</code></div>
+    <p>Jeden region i wszystkie jego stays.</p>
+  </div>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/destinations/lofoten</pre>
+  <h4>Odpowiedź — błąd (404)</h4>
+<pre>{"error": "No destination with that slug."}</pre>
+  <h4>Odpowiedź — sukces (skrócony przykład)</h4>
+<pre>{
+  "destination": { "slug": "lofoten", "name": "Lofoten", …, "stayCount": 2, "fromPrice": 285 },
+  "stays": [
+    { "slug": "rorbu-nine", … },
+    { "slug": "nusfjord-loft", … }
+  ]
+}</pre>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>destination</code></td><td>Obiekt regionu jak w <code>/api/destinations</code>.</td></tr>
+    <tr><td><code>stays</code></td><td>Wszystkie obiekty Stay z tego regionu.</td></tr>
+  </table>
+</section>
+
+<section id="journal" class="page">
+  <h2>GET /api/journal</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/journal</code></div>
+    <p>Lista artykułów, od najnowszego. Lista nie zawiera treści artykułów (<code>body</code>).</p>
+  </div>
+  <h4>Query params</h4>
+  <table>
+    <tr><th>Parametr</th><th>Wymagany</th><th>Opis</th></tr>
+    <tr><td><code>category</code></td><td>nie</td><td>Nazwa kategorii, bez rozróżniania wielkości liter, np. <code>method</code>.</td></tr>
+    <tr><td><code>limit</code></td><td>nie</td><td>Maksymalna liczba wyników.</td></tr>
+  </table>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/journal?limit=1</pre>
+  <h4>Odpowiedź — sukces</h4>
+<pre>{
+  "count": 1,
+  "categories": ["Method", "Timing", "Practical", "Field notes", "Design"],
+  "results": [
+    {
+      "slug": "how-we-choose",
+      "title": "How a place gets on the list",
+      "dek": "We turn down about ninety percent of what we look at. …",
+      "category": "Method",
+      "date": "2026-06-18",
+      "readMinutes": 6,
+      "author": "Ines Aro",
+      "tone": ["#2f4f5e", "#c98a5a"],
+      "image": "stay-rorbu-nine",
+      "alt": "Still water in Austnesfjorden …"
+    }
+  ]
+}</pre>
+  <h4>Znaczenie kluczy w odpowiedzi</h4>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>categories</code></td><td>Wszystkie kategorie występujące w dzienniku, niezależnie od filtra.</td></tr>
+    <tr><td><code>title</code> / <code>dek</code></td><td>Tytuł i lead artykułu.</td></tr>
+    <tr><td><code>date</code></td><td>Data publikacji <code>YYYY-MM-DD</code>.</td></tr>
+    <tr><td><code>readMinutes</code></td><td>Szacowany czas czytania w minutach.</td></tr>
+    <tr><td><code>author</code></td><td>Autor.</td></tr>
+  </table>
+</section>
+
+<section id="article" class="page">
+  <h2>GET /api/journal/:slug</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/journal/{slug}</code></div>
+    <p>Pełny artykuł z treścią i linkami do artykułu nowszego i starszego.</p>
+  </div>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/journal/how-we-choose</pre>
+  <h4>Odpowiedź — błąd (404)</h4>
+<pre>{"error": "No article with that slug."}</pre>
+  <h4>Odpowiedź — sukces (skrócony przykład)</h4>
+<pre>{
+  "article": {
+    "slug": "how-we-choose",
+    "title": "How a place gets on the list",
+    …,
+    "body": ["Every stay on this list has been slept in …", "…"]
+  },
+  "prev": null,
+  "next": {"slug": "the-case-for-february", "title": "The case for going in February", "category": "Timing"}
+}</pre>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>article.body</code></td><td>Tablica akapitów treści.</td></tr>
+    <tr><td><code>prev</code></td><td>Artykuł nowszy (<code>slug</code>, <code>title</code>, <code>category</code>) albo <code>null</code>, gdy to najnowszy.</td></tr>
+    <tr><td><code>next</code></td><td>Artykuł starszy albo <code>null</code>, gdy to najstarszy.</td></tr>
+  </table>
+</section>
+
+<section id="enq-post" class="page">
+  <h2>POST /api/enquiries</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--post">POST</span><code>/api/enquiries</code></div>
+    <p>
+      Zapisuje zapytanie z formularza „Plan a trip”. Po zapisie serwer przypisuje zapytanie do skrzynki według
+      reguł routingu i przygotowuje maile (do zespołu i potwierdzenie do klienta). Limit: 5 żądań na godzinę z IP.
+    </p>
+  </div>
+  <h4>Treść żądania (JSON)</h4>
+  <table>
+    <tr><th>Pole</th><th>Wymagane</th><th>Opis</th></tr>
+    <tr><td><code>name</code></td><td>tak</td><td>Imię, 2–120 znaków.</td></tr>
+    <tr><td><code>email</code></td><td>tak</td><td>Adres e-mail, do 200 znaków.</td></tr>
+    <tr><td><code>party</code></td><td>nie</td><td>Liczba osób, liczba całkowita 1–12 (domyślnie <code>2</code>).</td></tr>
+    <tr><td><code>destination</code></td><td>nie</td><td>Slug regionu z <code>/api/destinations</code>. Pusty = bez preferencji.</td></tr>
+    <tr><td><code>stay</code></td><td>nie</td><td>Slug obiektu z <code>/api/stays</code>. Pusty = klient prosi o shortlistę.</td></tr>
+    <tr><td><code>month</code></td><td>nie</td><td>Orientacyjny termin, dowolny tekst do 40 znaków, np. <code>February 2027</code>.</td></tr>
+    <tr><td><code>message</code></td><td>nie</td><td>Wiadomość, do 2000 znaków.</td></tr>
+  </table>
+  <h4>Przykład żądania</h4>
+<pre>POST https://&lt;twoja-domena&gt;/api/enquiries
+Content-Type: application/json
+
+{"name": "Ines Aro", "email": "ines@example.com", "party": 2,
+ "destination": "lofoten", "month": "February 2027",
+ "message": "We would rather be cold than crowded."}</pre>
+  <h4>Odpowiedź — błąd walidacji (422)</h4>
+<pre>{"error": "Validation failed.", "fields": {
+  "name": "Tell us what to call you.",
+  "email": "That email address does not look right.",
+  "party": "Party size must be between 1 and 12."
+}}</pre>
+  <h4>Odpowiedź — przekroczony limit (429)</h4>
+<pre>{"error": "That is a lot of enquiries. Give us an hour to catch up, or email hello@lull.travel.", "retryAfter": 3412}</pre>
+  <h4>Odpowiedź — sukces (201)</h4>
+<pre>{
+  "id": "LUL-0003",
+  "receivedAt": "2026-09-28T15:02:11.482Z",
+  "message": "Thank you, Ines Aro. We reply to every enquiry within one working day."
+}</pre>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>id</code></td><td>Numer referencyjny zapytania (<code>LUL-</code> + kolejny numer).</td></tr>
+    <tr><td><code>receivedAt</code></td><td>Czas zapisu.</td></tr>
+    <tr><td><code>message</code></td><td>Tekst podziękowania do pokazania klientowi.</td></tr>
+  </table>
+  <p class="note">Wysyłka maili dzieje się po odpowiedzi — awaria poczty nigdy nie blokuje zapisu zapytania.</p>
+</section>
+
+<section id="enq-count" class="page">
+  <h2>GET /api/enquiries/count</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/enquiries/count</code></div>
+    <p>Liczba wszystkich zapytań. Nie zwraca żadnych danych osobowych. Bez parametrów query.</p>
+  </div>
+  <h4>Odpowiedź — sukces</h4>
+<pre>{"count": 42}</pre>
+</section>
+
+<section id="login" class="page">
+  <h2>POST /api/admin/login · POST /api/admin/logout · GET /api/admin/me</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--post">POST</span><code>/api/admin/login</code></div>
+    <p>Otwiera sesję i ustawia ciasteczko <code>lull_admin</code>. Treść: <code>{"email", "password"}</code>.</p>
+  </div>
+<pre>POST https://&lt;twoja-domena&gt;/api/admin/login
+Content-Type: application/json
+
+{"email": "admin@example.com", "password": "…"}</pre>
+  <h4>Odpowiedź — błąd (401)</h4>
+<pre>{"error": "That email and password do not match."}</pre>
+  <h4>Odpowiedź — sukces</h4>
+<pre>{"email": "admin@example.com"}
+Set-Cookie: lull_admin=…; Path=/; HttpOnly; SameSite=Strict; Max-Age=43200</pre>
+
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--post">POST</span><code>/api/admin/logout</code></div>
+    <p>Kasuje ciasteczko sesji. Zwraca <code>{"ok": true}</code>. Nie wymaga ważnej sesji.</p>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/me</code><span class="lock">wymaga sesji</span></div>
+    <p>Kto jest zalogowany i jak skonfigurowany jest serwer.</p>
+  </div>
+<pre>{"email": "admin@example.com", "db": "supabase",
+ "mail": {"transport": "log", "ready": true, "delivers": false}}</pre>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>db</code></td><td><code>supabase</code> (baza w chmurze) albo <code>file</code> (pliki lokalne).</td></tr>
+    <tr><td><code>mail.transport</code></td><td><code>log</code> — maile tylko zapisywane, nie wysyłane; <code>resend</code> — wysyłka przez Resend.</td></tr>
+    <tr><td><code>mail.ready</code></td><td>Czy transport ma komplet konfiguracji.</td></tr>
+    <tr><td><code>mail.delivers</code></td><td>Czy maile faktycznie wychodzą z serwera.</td></tr>
+  </table>
+</section>
+
+<section id="overview" class="page">
+  <h2>GET /api/admin/overview</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/overview</code><span class="lock">wymaga sesji</span></div>
+    <p>Dane do pulpitu: liczniki zapytań, ostatnie zapytania i maile, liczba treści.</p>
+  </div>
+  <h4>Odpowiedź — sukces (skrócony przykład)</h4>
+<pre>{
+  "total": 2,
+  "open": 2,
+  "counts": {"new": 1, "in-progress": 1},
+  "recent": [ { …obiekt Enquiry… } ],
+  "mail": [ { …obiekt Mail… } ],
+  "content": {"stays": 14, "destinations": 8, "journal": 6},
+  "db": "supabase",
+  "mailInfo": {"transport": "log", "ready": true, "delivers": false}
+}</pre>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>total</code></td><td>Wszystkie zapytania.</td></tr>
+    <tr><td><code>open</code></td><td>Zapytania w statusach, które nie zamykają sprawy (<code>final: false</code>).</td></tr>
+    <tr><td><code>counts</code></td><td>Mapa <code>klucz statusu → liczba</code>.</td></tr>
+    <tr><td><code>recent</code> / <code>mail</code></td><td>6 ostatnich zapytań i 5 ostatnich maili.</td></tr>
+  </table>
+</section>
+
+<section id="a-enqs" class="page">
+  <h2>GET /api/admin/enquiries</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/enquiries</code><span class="lock">wymaga sesji</span></div>
+    <p>Lista zapytań z danymi osobowymi, od najnowszego, z filtrami i paginacją.</p>
+  </div>
+  <h4>Query params</h4>
+  <table>
+    <tr><th>Parametr</th><th>Wymagany</th><th>Opis</th></tr>
+    <tr><td><code>status</code></td><td>nie</td><td>Klucz statusu, np. <code>new</code>, <code>in-progress</code>. Lista statusów: <code>GET /api/admin/settings</code>.</td></tr>
+    <tr><td><code>assignee</code></td><td>nie</td><td>Klucz skrzynki (handlera), np. <code>oslo</code>. <code>none</code> = nieprzypisane.</td></tr>
+    <tr><td><code>q</code></td><td>nie</td><td>Szukanie w numerze, imieniu, e-mailu i wiadomości (do 80 znaków).</td></tr>
+    <tr><td><code>limit</code></td><td>nie</td><td>1–200, domyślnie 50.</td></tr>
+    <tr><td><code>offset</code></td><td>nie</td><td>Przesunięcie dla paginacji, domyślnie 0.</td></tr>
+  </table>
+  <h4>Przykład żądania</h4>
+<pre>GET https://&lt;twoja-domena&gt;/api/admin/enquiries?status=new&amp;limit=20
+Cookie: lull_admin=…</pre>
+  <h4>Odpowiedź — sukces</h4>
+<pre>{
+  "total": 2,
+  "count": 1,
+  "limit": 1,
+  "offset": 0,
+  "counts": {"new": 1, "in-progress": 1},
+  "results": [
+    {
+      "id": "LUL-0002",
+      "receivedAt": "2026-09-28T14:30:41.228Z",
+      "updatedAt": "2026-09-28T14:32:07.856Z",
+      "status": "in-progress",
+      "name": "Ines Aro",
+      "email": "ines@example.com",
+      "party": 3,
+      "month": "June 2027",
+      "destination": "kalahari",
+      "stay": "sand-camp",
+      "message": "…",
+      "assignee": "hello",
+      "history": [
+        {"at": "2026-09-28T14:30:41.029Z", "type": "created", "by": "site", "to": "hello"},
+        {"at": "2026-09-28T14:32:07.855Z", "type": "status", "by": "admin@example.com",
+         "from": "new", "to": "in-progress"}
+      ]
+    }
+  ]
+}</pre>
+</section>
+
+<section class="page">
+  <h3 style="margin-top:0">Obiekt Enquiry — znaczenie kluczy</h3>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>total</code> / <code>count</code></td><td>Liczba wyników po filtrach / liczba zwróconych na tej stronie.</td></tr>
+    <tr><td><code>counts</code></td><td>Liczba zapytań w każdym statusie (bez uwzględnienia filtrów).</td></tr>
+    <tr><td><code>id</code></td><td>Numer referencyjny <code>LUL-0001</code>…</td></tr>
+    <tr><td><code>receivedAt</code> / <code>updatedAt</code></td><td>Czas wpłynięcia i ostatniej zmiany.</td></tr>
+    <tr><td><code>status</code></td><td>Klucz statusu. Statusy i ich kolejność są konfigurowane w panelu.</td></tr>
+    <tr><td><code>name</code>, <code>email</code>, <code>party</code>, <code>month</code>, <code>message</code></td><td>Dane z formularza.</td></tr>
+    <tr><td><code>destination</code> / <code>stay</code></td><td>Slugi regionu i obiektu; pusty string = brak wyboru.</td></tr>
+    <tr><td><code>assignee</code></td><td>Klucz skrzynki obsługującej zapytanie albo <code>null</code>.</td></tr>
+    <tr><td><code>history</code></td><td>Chronologiczna lista zdarzeń:
+      <table>
+        <tr><th><code>type</code></th><th>Pola dodatkowe</th></tr>
+        <tr><td><code>created</code></td><td><code>to</code> — skrzynka z routingu; <code>by</code> = <code>site</code></td></tr>
+        <tr><td><code>status</code></td><td><code>from</code>, <code>to</code> — klucze statusów</td></tr>
+        <tr><td><code>assigned</code></td><td><code>from</code>, <code>to</code> — klucze skrzynek; <code>text</code> — notatka</td></tr>
+        <tr><td><code>forwarded</code></td><td><code>to</code> — adres e-mail; <code>text</code> — notatka</td></tr>
+        <tr><td><code>note</code></td><td><code>text</code> — treść notatki wewnętrznej</td></tr>
+      </table>
+      Każde zdarzenie ma <code>at</code> (czas) i <code>by</code> (e-mail admina albo <code>site</code>).
+    </td></tr>
+  </table>
+</section>
+
+<section id="a-csv" class="page">
+  <h2>GET /api/admin/enquiries.csv</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/enquiries.csv</code><span class="lock">wymaga sesji</span></div>
+    <p>Eksport zapytań do CSV z tymi samymi filtrami co lista (<code>status</code>, <code>assignee</code>, <code>q</code>), do 10 000 wierszy.</p>
+  </div>
+<pre>id,receivedAt,status,assignee,name,email,party,month,destination,stay,message
+LUL-0002,2026-09-28T14:30:41.228Z,in-progress,hello,Ines Aro,ines@example.com,3,June 2027,kalahari,sand-camp,…</pre>
+  <p class="note">
+    Nagłówek <code>Content-Disposition: attachment; filename="lull-enquiries-YYYY-MM-DD.csv"</code>. Komórki zaczynające się
+    od <code>=</code>, <code>+</code>, <code>-</code>, <code>@</code> są poprzedzone apostrofem (ochrona przed formułami w Excelu).
+  </p>
+</section>
+
+<section id="a-enq" class="page">
+  <h2>GET /api/admin/enquiries/:id</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/enquiries/{id}</code><span class="lock">wymaga sesji</span></div>
+    <p>Jedno zapytanie, wszystkie maile z nim związane i to, dokąd skierowałby je routing.</p>
+  </div>
+  <h4>Odpowiedź — błąd (404)</h4>
+<pre>{"error": "No enquiry with that reference."}</pre>
+  <h4>Odpowiedź — sukces (skrócony przykład)</h4>
+<pre>{
+  "enquiry": { …obiekt Enquiry… },
+  "mail": [
+    {
+      "id": 4,
+      "createdAt": "2026-09-28T14:30:41.506Z",
+      "enquiryId": "LUL-0002",
+      "kind": "ack",
+      "to": ["ines@example.com"],
+      "replyTo": "hello@lull.travel",
+      "subject": "We have your enquiry (LUL-0002)",
+      "body": "Hello Ines Aro, …",
+      "transport": "log",
+      "status": "logged",
+      "error": null
+    }
+  ],
+  "routing": {"suggested": "hello", "rule": null}
+}</pre>
+  <h4>Obiekt Mail — znaczenie kluczy</h4>
+  <table>
+    <tr><th>Klucz</th><th>Opis</th></tr>
+    <tr><td><code>kind</code></td><td><code>team</code> — nowe zapytanie do zespołu; <code>ack</code> — potwierdzenie do klienta; <code>forward</code> — przekazanie; <code>status:{klucz}</code> — mail do klienta przy zmianie statusu; <code>status-team</code> — notka do handlera; <code>test</code>.</td></tr>
+    <tr><td><code>to</code> / <code>replyTo</code></td><td>Odbiorcy i adres odpowiedzi.</td></tr>
+    <tr><td><code>status</code></td><td><code>logged</code> — zapisany, niewysłany (transport <code>log</code>); <code>sent</code> — wysłany; <code>failed</code> — błąd, opis w <code>error</code>.</td></tr>
+    <tr><td><code>routing.suggested</code></td><td>Skrzynka wskazana przez obecne reguły routingu.</td></tr>
+    <tr><td><code>routing.rule</code></td><td>Reguła, która zadziałała (<code>{"destination", "mailbox"}</code>), albo <code>null</code>, gdy użyto skrzynki domyślnej.</td></tr>
+  </table>
+</section>
+
+<section id="a-patch" class="page">
+  <h2>PATCH /api/admin/enquiries/:id</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--patch">PATCH</span><code>/api/admin/enquiries/{id}</code><span class="lock">wymaga sesji</span></div>
+    <p>Zmienia status lub handlera zapytania. Każda zmiana trafia do historii i może wysłać maile zgodnie z ustawieniami.</p>
+  </div>
+  <h4>Treść żądania (JSON)</h4>
+  <table>
+    <tr><th>Pole</th><th>Wymagane</th><th>Opis</th></tr>
+    <tr><td><code>status</code></td><td>jedno z dwóch</td><td>Nowy klucz statusu. Jeśli status ma włączone <em>Email the customer</em> — klient dostaje mail; <em>Note to the handler</em> — handler dostaje notkę.</td></tr>
+    <tr><td><code>assignee</code></td><td>jedno z dwóch</td><td>Klucz nowej skrzynki. Nowy handler dostaje mail z pełnym zapytaniem.</td></tr>
+    <tr><td><code>note</code></td><td>nie</td><td>Notatka dołączana do przekazania (tylko z <code>assignee</code>).</td></tr>
+  </table>
+  <h4>Przykład żądania</h4>
+<pre>PATCH https://&lt;twoja-domena&gt;/api/admin/enquiries/LUL-0002
+Content-Type: application/json
+Cookie: lull_admin=…
+
+{"assignee": "oslo", "note": "She asked about the sauna."}</pre>
+  <h4>Odpowiedź — błąd walidacji (422)</h4>
+<pre>{"error": "Unknown status.", "fields": {"status": "Pick one of the configured statuses."}}</pre>
+  <h4>Odpowiedź — sukces</h4>
+<pre>{"enquiry": { …zaktualizowany obiekt Enquiry… }}</pre>
+</section>
+
+<section id="a-notes" class="page">
+  <h2>Notatki, forward i usuwanie</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--post">POST</span><code>/api/admin/enquiries/{id}/notes</code><span class="lock">wymaga sesji</span></div>
+    <p>Dodaje notatkę wewnętrzną do historii. Nic nie jest wysyłane. Treść: <code>{"text": "…"}</code> (1–2000 znaków). Sukces: <code>201</code>, <code>{"enquiry": {…}}</code>.</p>
+  </div>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--post">POST</span><code>/api/admin/enquiries/{id}/forward</code><span class="lock">wymaga sesji</span></div>
+    <p>Wysyła kopię zapytania na dowolny adres; handler się nie zmienia. Treść: <code>{"to": "guide@example.com", "note": "…"}</code>.</p>
+  </div>
+<pre>{
+  "enquiry": { …obiekt Enquiry z nowym zdarzeniem "forwarded"… },
+  "mail": { …obiekt Mail… }
+}</pre>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--delete">DELETE</span><code>/api/admin/enquiries/{id}</code><span class="lock">wymaga sesji</span></div>
+    <p>Usuwa zapytanie z historią. Maile w outboxie zostają (bez powiązania). Sukces: <code>204</code> bez treści; brak zapytania: <code>404</code>.</p>
+  </div>
+</section>
+
+<section id="a-content" class="page">
+  <h2>Treści: /api/admin/schema i /api/admin/content</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/schema</code><span class="lock">wymaga sesji</span></div>
+    <p>Definicje pól dla kolekcji <code>stays</code>, <code>destinations</code>, <code>journal</code> (typ, wymagalność, limity, grupa w formularzu) oraz lista dostępnych zdjęć z <code>public/img/card</code>.</p>
+  </div>
+<pre>{
+  "schema": {
+    "stays": {
+      "label": "Stays", "singular": "Stay", "title": "name", "path": "/stays/",
+      "list": ["destination", "type", "pricePerNight"],
+      "fields": [
+        {"key": "name", "label": "Name", "type": "text", "group": "Basics", "required": true, "max": 80},
+        {"key": "pricePerNight", "type": "number", "int": true, "min": 0, "max": 50000, …},
+        …
+      ]
+    },
+    "destinations": { … },
+    "journal": { … }
+  },
+  "images": ["dest-alentejo", "dest-atacama", "stay-rorbu-nine", …]
+}</pre>
+  <table>
+    <tr><th>Metoda</th><th>Ścieżka</th><th>Opis</th></tr>
+    <tr><td><span class="badge badge--get">GET</span></td><td><code>/api/admin/content/{collection}</code></td><td>Wszystkie wpisy kolekcji: <code>{"count", "results"}</code>.</td></tr>
+    <tr><td><span class="badge badge--get">GET</span></td><td><code>/api/admin/content/{collection}/{slug}</code></td><td>Jeden wpis: <code>{"entry"}</code>.</td></tr>
+    <tr><td><span class="badge badge--post">POST</span></td><td><code>/api/admin/content/{collection}</code></td><td>Nowy wpis. Pełny obiekt według schematu, z <code>slug</code>. Sukces <code>201</code>.</td></tr>
+    <tr><td><span class="badge badge--put">PUT</span></td><td><code>/api/admin/content/{collection}/{slug}</code></td><td>Zapis całego wpisu. <code>slug</code> jest ignorowany — nie zmienia się po publikacji.</td></tr>
+    <tr><td><span class="badge badge--delete">DELETE</span></td><td><code>/api/admin/content/{collection}/{slug}</code></td><td>Usunięcie. <code>204</code>; <code>409</code>, gdy region jest używany przez stays.</td></tr>
+  </table>
+  <h4>Przykład żądania</h4>
+<pre>PUT https://&lt;twoja-domena&gt;/api/admin/content/stays/rorbu-nine
+Content-Type: application/json
+Cookie: lull_admin=…
+
+{ "name": "Rorbu Nine", "destination": "lofoten", "pricePerNight": 340, …pozostałe pola… }</pre>
+  <h4>Odpowiedź — błąd walidacji (422)</h4>
+<pre>{"error": "Validation failed.", "fields": {"pricePerNight": "No lower than 0.", "tone": "Two colours, like #2f4f5e."}}</pre>
+  <h4>Odpowiedź — konflikt (409)</h4>
+<pre>{"error": "Still used by 2 stays: Rorbu Nine, Nusfjord Loft."}</pre>
+  <p class="note">Zmiany są widoczne w publicznym API i na stronie natychmiast po zapisie, bez restartu serwera.</p>
+</section>
+
+<section id="a-settings" class="page">
+  <h2>Ustawienia: /api/admin/settings</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/settings</code><span class="lock">wymaga sesji</span></div>
+    <p>Wszystkie ustawienia CMS, dostępne kolory statusów i placeholdery szablonów.</p>
+  </div>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--put">PUT</span><code>/api/admin/settings/{key}</code><span class="lock">wymaga sesji</span></div>
+    <p>Zapisuje jeden klucz ustawień w całości. Odpowiedź: <code>{"key", "value"}</code>; błędy walidacji — <code>422</code> z <code>fields</code> (dla list w formacie <code>"{indeks}.{pole}"</code>, np. <code>"0.email"</code>).</p>
+  </div>
+  <table>
+    <tr><th><code>key</code></th><th>Kształt wartości</th></tr>
+    <tr><td><code>mail</code></td><td><code>{"fromName", "fromEmail", "replyTo"}</code> — nadawca maili.</td></tr>
+    <tr><td><code>mailboxes</code></td><td><code>[{"id", "name", "email"}]</code> — skrzynki. Nie można usunąć skrzynki używanej w routingu.</td></tr>
+    <tr><td><code>routing</code></td><td><code>{"notifyOnCreate": bool, "fallback": id, "cc": [id], "rules": [{"destination": slug, "mailbox": id}]}</code></td></tr>
+    <tr><td><code>statuses</code></td><td><code>[{"key", "label", "tone", "final", "notifyTeam", "notifyCustomer", "subject", "body"}]</code> — kolejność ma znaczenie, pierwszy status dostaje każde nowe zapytanie. <code>tone</code>: <code>teal</code> | <code>warm</code> | <code>ok</code> | <code>muted</code> | <code>danger</code>. Nie można usunąć statusu, w którym są zapytania.</td></tr>
+    <tr><td><code>templates</code></td><td><code>{"team": {subject, body}, "ack": {enabled, subject, body}, "forward": {subject, body}}</code></td></tr>
+  </table>
+  <h4>Placeholdery w szablonach</h4>
+  <p>
+    <code>{{ref}}</code> <code>{{name}}</code> <code>{{email}}</code> <code>{{party}}</code> <code>{{month}}</code>
+    <code>{{destination}}</code> <code>{{stay}}</code> <code>{{message}}</code> <code>{{status}}</code> <code>{{assignee}}</code>
+    <code>{{receivedAt}}</code> <code>{{adminUrl}}</code> <code>{{by}}</code> <code>{{note}}</code>
+  </p>
+  <h4>Przykład żądania</h4>
+<pre>PUT https://&lt;twoja-domena&gt;/api/admin/settings/routing
+Content-Type: application/json
+Cookie: lull_admin=…
+
+{"notifyOnCreate": true, "fallback": "hello", "cc": [],
+ "rules": [{"destination": "lofoten", "mailbox": "oslo"}]}</pre>
+  <h4>Odpowiedź — błąd walidacji (422)</h4>
+<pre>{"error": "Validation failed.", "fields": {"fallback": "Pick a mailbox."}}</pre>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--post">POST</span><code>/api/admin/settings/test-mail</code><span class="lock">wymaga sesji</span></div>
+    <p>Mail testowy. Treść: <code>{"to": "you@example.com"}</code>. Sukces <code>201</code>, <code>{"mail": {…obiekt Mail…}}</code>.</p>
+  </div>
+</section>
+
+<section id="a-outbox" class="page">
+  <h2>GET /api/admin/outbox</h2>
+  <div class="endpoint">
+    <div class="endpoint__line"><span class="badge badge--get">GET</span><code>/api/admin/outbox</code><span class="lock">wymaga sesji</span></div>
+    <p>Wszystkie maile przygotowane przez system, od najnowszego — także te niewysłane (transport <code>log</code>).</p>
+  </div>
+  <h4>Query params</h4>
+  <table>
+    <tr><th>Parametr</th><th>Wymagany</th><th>Opis</th></tr>
+    <tr><td><code>limit</code></td><td>nie</td><td>1–500, domyślnie 100.</td></tr>
+  </table>
+  <h4>Odpowiedź — sukces</h4>
+<pre>{
+  "count": 1,
+  "results": [ { …obiekt Mail… } ],
+  "mail": {"transport": "log", "ready": true, "delivers": false}
+}</pre>
+  <p class="note">
+    Czasy podawane są w UTC. Wszystkie endpointy <code>/api/admin/*</code> odpowiadają z nagłówkami
+    <code>Cache-Control: no-store</code> i <code>X-Robots-Tag: noindex</code>.
+  </p>
+</section>
+
+</main>
+</body>
+</html>
