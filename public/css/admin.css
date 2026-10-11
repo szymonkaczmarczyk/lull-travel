@@ -300,6 +300,7 @@
 .adm-bar { display: grid; grid-template-columns: 130px 1fr 36px; align-items: center; gap: 14px; }
 .adm-bar__track { height: 6px; border-radius: 99px; background: var(--hair-ghost); overflow: hidden; }
 .adm-bar__fill {
+  display: block;
   height: 100%;
   border-radius: 99px;
   background: var(--c, var(--teal));
@@ -681,6 +682,7 @@
   align-items: start;
 }
 .adm-row .field { gap: 6px; }
+.adm-row > .adm-icon-btn { align-self: center; }
 .adm-row .field__label { display: none; }
 .adm-rows__head {
   display: grid;

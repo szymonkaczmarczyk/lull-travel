@@ -9,6 +9,8 @@ pozwala zespołowi obsługiwać zapytania, edytować treści i ustawiać, kto i 
 Całość to Node + Express i statyczny frontend w czystym HTML, CSS i modułach ES. Bez frameworka, bez
 bundlera, bez kroku budowania. Jedyna zależność produkcyjna to `express`.
 
+![Strona główna LULL](docs/screenshots/home.jpg)
+
 ## Dla kogo
 
 - **Dla małego biura podróży lub zespołu 2–5 osób**, który sprzedaje przez rozmowę, a nie przez koszyk.
@@ -75,6 +77,34 @@ Resend; SMTP łatwo dopisać).
   szablony maili z placeholderami i podglądem, nadawca, mail testowy.
 - **Outbox** — każdy mail, jaki system przygotował, z informacją, czy wyszedł.
 
+## Zrzuty ekranu
+
+### Strona publiczna
+
+| Katalog stays | Strona obiektu |
+|---|---|
+| ![Lista stays z filtrami regionu i typu](docs/screenshots/stays.jpg) | ![Strona obiektu Rorbu Nine z panelem ceny](docs/screenshots/stay.jpg) |
+
+| Formularz zapytania |
+|---|
+| ![Formularz Plan a trip](docs/screenshots/plan.jpg) |
+
+### Panel administracyjny
+
+| Overview | Lista zapytań |
+|---|---|
+| ![Pulpit z licznikami, ostatnimi zapytaniami i statusami](docs/screenshots/admin-overview.png) | ![Lista zapytań z filtrami statusów i handlerem](docs/screenshots/admin-enquiries.png) |
+
+| Szczegóły zapytania | Edycja treści |
+|---|---|
+| ![Zapytanie z historią, zmianą statusu i przekazaniem](docs/screenshots/admin-enquiry.png) | ![Formularz edycji stay z podglądem karty](docs/screenshots/admin-content.png) |
+
+| Routing zapytań | Logowanie |
+|---|---|
+| ![Ustawienia routingu według regionu](docs/screenshots/admin-settings.png) | ![Ekran logowania do panelu](docs/screenshots/admin-login.png) |
+
+Dane w panelu na zrzutach są przykładowe.
+
 ## Uruchomienie
 
 Wymagany Node.js 18 lub nowszy.
@@ -138,6 +168,7 @@ supabase/schema.sql schemat bazy
 docs/
   api-documentation.pdf / .html   dokumentacja API dla osób trzecich
   admin.md                        jak działa panel, baza i maile; jak dodawać endpointy
+  screenshots/                    zrzuty ekranu używane w README
 ```
 
 ## Bezpieczeństwo
@@ -176,10 +207,8 @@ nie istnieją.
   parametry, przykłady żądań i odpowiedzi, kody błędów.
 - [`docs/admin.md`](docs/admin.md) — jak zbudowany jest panel, konfiguracja Supabase i maili, przepis na
   nowy endpoint.
-- [`CLAUDE.md`](CLAUDE.md) — konwencje kodu i design systemu.
 
-## Skille
+## Licencja
 
-W `.claude/skills/` (i jako kopie w `vendor/`) są zainstalowane dwa repozytoria skilli:
-[andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) i
-[ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill). Zasady ich użycia opisuje `CLAUDE.md`.
+Kod udostępniony na licencji MIT, szczegóły w pliku [`LICENSE`](LICENSE). Licencja nie obejmuje zdjęć z
+Wikimedia Commons, które mają własne licencje opisane wyżej.
