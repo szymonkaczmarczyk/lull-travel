@@ -69,6 +69,7 @@ Resend; SMTP łatwo dopisać).
 | `/journal`, `/journal/:slug` | Dziennik z filtrem kategorii, pasek postępu czytania, poprzedni/następny |
 | `/plan` | Formularz zapytania z walidacją po stronie serwera |
 | `/about` | Zasady, historia, ludzie |
+| `/credits` | Autorzy i licencje zdjęć |
 
 **Panel `/admin`**
 
@@ -189,12 +190,12 @@ Odpowiedzi tekstowe idą skompresowane brotli (`lib/compress.js` dla HTML/JSON, 
 i JS). Zdjęcia są cache'owane na rok i serwowane w dwóch szerokościach przez `srcset`. Na `/stays`:
 947 kB → 346 kB.
 
-## Zdjęcia i licencje — przed publikacją
+## Zdjęcia i licencje
 
-Dwadzieścia dwa zdjęcia miejsc pochodzą z Wikimedia Commons na licencjach CC BY-SA i CC BY. Obie wymagają
-podania autora, licencji i linku do źródła wszędzie, gdzie zdjęcie jest pokazywane. Strona z podziękowaniami
-została usunięta, więc **w obecnej postaci strona nie spełnia tych warunków**. Przywróć stronę z atrybucją
-albo zastąp pliki odpowiednikami CC0 / public domain.
+Dwadzieścia dwa zdjęcia miejsc pochodzą z Wikimedia Commons na licencjach CC BY, CC BY-SA i z domeny publicznej.
+Autorzy, licencje i linki do oryginałów są na stronie [`/credits`](server/views/credits.html), do której prowadzi
+link w stopce każdej strony. Dane strony są w `server/data/credits.json`, więc po podmianie zdjęcia wystarczy
+zaktualizować jeden wpis.
 
 Zdjęcia są stonowane w CSS, a nie w plikach: `.art` w `public/css/base.css` nakłada na każde ciepły filtr,
 turkusowo-bursztynowy odcień i ziarno, dzięki czemu fiord w Arktyce i zachód słońca w Kalahari wyglądają jak
@@ -213,4 +214,4 @@ nie istnieją.
 ## Licencja
 
 Kod udostępniony na licencji MIT, szczegóły w pliku [`LICENSE`](LICENSE). Licencja nie obejmuje zdjęć z
-Wikimedia Commons, które mają własne licencje opisane wyżej.
+Wikimedia Commons, które mają własne licencje wymienione na stronie `/credits`.

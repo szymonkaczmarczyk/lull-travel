@@ -116,7 +116,7 @@ function mountChrome() {
         </div>
         <div class="footer__bottom">
           <span>© <span data-year></span> Lull Travel</span>
-          <span>14 stays · 8 regions · one road in</span>
+          <span>14 stays · 8 regions · one road in · <a href="/credits">Photo credits</a></span>
         </div>
       </div>`;
   }

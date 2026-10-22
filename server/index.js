@@ -15,6 +15,7 @@ import journalRoutes from './routes/journal.js';
 import enquiriesRoutes from './routes/enquiries.js';
 import adminRoutes from './routes/admin.js';
 import { stays, destinations, journal, initStore } from './lib/store.js';
+import { renderCredits } from './lib/credits.js';
 import { initSettings } from './lib/settings.js';
 import { db } from './db/index.js';
 import { mailInfo } from './lib/mail.js';
@@ -113,6 +114,7 @@ app.get('/sitemap.xml', (_req, res) => {
     { loc: '/journal', priority: '0.7', changefreq: 'weekly' },
     { loc: '/about', priority: '0.5', changefreq: 'yearly' },
     { loc: '/plan', priority: '0.8', changefreq: 'yearly' },
+    { loc: '/credits', priority: '0.2', changefreq: 'yearly' },
     ...stays.map((s) => ({ loc: `/stays/${s.slug}`, priority: '0.8', changefreq: 'monthly' })),
     ...destinations.map((d) => ({ loc: `/destinations/${d.slug}`, priority: '0.7', changefreq: 'monthly' })),
     ...journal.map((a) => ({ loc: `/journal/${a.slug}`, priority: '0.6', changefreq: 'yearly', lastmod: a.date })),
@@ -188,6 +190,17 @@ app.get('/about', page('about.html', {
   description: 'Three people, eight regions, and one rule: nothing goes on the list until someone here has slept in it.',
   path: '/about',
 }));
+
+app.get('/credits', (_req, res) => {
+  const html = readFileSync(join(VIEWS, 'credits.html'), 'utf8')
+    .replace('<!--meta-->', metaTags({
+      title: 'Photo credits',
+      description: 'Who took the photos on this site, and the licences they are shared under.',
+      path: '/credits',
+    }))
+    .replace('<!--credits-->', renderCredits(stays, destinations));
+  res.type('html').send(html);
+});
 
 app.get(['/admin', '/admin/*'], (_req, res) => {
   res.set({ 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' });

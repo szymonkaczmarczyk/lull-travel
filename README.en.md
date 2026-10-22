@@ -70,6 +70,7 @@ the server. Real sending is switched on with one variable in `.env` (a ready Res
 | `/journal`, `/journal/:slug` | Journal with a category filter, reading progress bar, previous/next |
 | `/plan` | Enquiry form with server-side validation |
 | `/about` | Principles, story, people |
+| `/credits` | Photo authors and licenses |
 
 **The `/admin` panel**
 
@@ -189,12 +190,11 @@ Rate limits are counted in process memory. With several instances you need a sha
 Text responses are brotli-compressed (`lib/compress.js` for HTML/JSON, `lib/staticText.js` for CSS and JS). Photos
 are cached for a year and served in two widths through `srcset`. On `/stays`: 947 kB → 346 kB.
 
-## Photos and licenses - before publishing
+## Photos and licenses
 
-Twenty-two place photos come from Wikimedia Commons under CC BY-SA and CC BY licenses. Both require crediting the
-author, the license and a link to the source wherever the photo is shown. The credits page was removed, so **in its
-current form the site does not meet these terms**. Restore a credits page or replace the files with CC0 / public
-domain equivalents.
+Twenty-two place photos come from Wikimedia Commons under CC BY, CC BY-SA and public domain. Authors, licenses and
+links to the originals are on the [`/credits`](server/views/credits.html) page, linked in the footer of every page.
+The page data lives in `server/data/credits.json`, so replacing a photo means updating one entry.
 
 The photos are toned in CSS, not in the files: `.art` in `public/css/base.css` applies a warm filter, a teal and
 amber tint and grain to each one, so an Arctic fjord and a Kalahari sunset look like one shoot. Each record also has
@@ -212,4 +212,4 @@ The three founder portraits are GAN-generated faces (thispersondoesnotexist.com)
 ## License
 
 Code released under the MIT license, see [`LICENSE`](LICENSE). The license does not cover the Wikimedia Commons
-photos, which have their own licenses described above.
+photos, which have their own licenses listed on the `/credits` page.
