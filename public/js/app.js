@@ -91,7 +91,7 @@ function mountChrome() {
           <div class="footer__brand">
             <a class="wordmark" href="/">Lull<i class="wordmark__dot"></i></a>
             <p class="body-text" style="font-size:14.5px">Hand-picked stays in quiet, out-of-the-way places. Every one of them slept in by someone who works here.</p>
-            <p class="mono">Est. 2017 · Lisbon &amp; Oslo</p>
+            <p class="mono">Demo project · sample data</p>
           </div>
           <div class="footer__col">
             <h4>Explore</h4>

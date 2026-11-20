@@ -157,7 +157,7 @@ const notFound = (res) =>
 
 app.get('/', page('home.html', {
   title: NAME,
-  description: 'LULL is a boutique travel company. Hand-picked stays in quiet, out-of-the-way places — every one of them slept in by someone who works here.',
+  description: 'LULL is a boutique travel company. Hand-picked stays in quiet, out-of-the-way places. Every one of them slept in by someone who works here.',
   path: '/',
 }));
 
@@ -253,5 +253,5 @@ app.listen(PORT, () => {
   console.log(`LULL running → http://localhost:${PORT}`);
   console.log(`  database  ${db.name}`);
   console.log(`  mail      ${mail.transport}${mail.delivers ? '' : ' (nothing leaves this server)'}`);
-  console.log(`  admin     ${adminEnabled() ? `http://localhost:${PORT}/admin` : 'off — set ADMIN_EMAIL and ADMIN_PASSWORD in .env'}`);
+  console.log(`  admin     ${adminEnabled() ? `http://localhost:${PORT}/admin` : 'off, set ADMIN_EMAIL and ADMIN_PASSWORD in .env'}`);
 });

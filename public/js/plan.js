@@ -31,7 +31,7 @@ async function populate() {
   document.querySelector('[data-stays]').insertAdjacentHTML(
     'beforeend',
     stays
-      .map((s) => `<option value="${esc(s.slug)}">${esc(s.name)} — ${esc(s.destination?.name ?? '')}</option>`)
+      .map((s) => `<option value="${esc(s.slug)}">${esc(s.name)}, ${esc(s.destination?.name ?? '')}</option>`)
       .join('')
   );
 

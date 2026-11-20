@@ -36,10 +36,13 @@ router.get('/:slug', (req, res) => {
   const stay = stays.find((s) => s.slug === req.params.slug);
   if (!stay) return res.status(404).json({ error: 'No stay with that slug.' });
 
+  const closeness = (s) => (s.destination === stay.destination ? 2 : 0) + (s.type === stay.type ? 1 : 0);
   const related = stays
-    .filter((s) => s.slug !== stay.slug && (s.destination === stay.destination || s.type === stay.type))
+    .filter((s) => s.slug !== stay.slug)
+    .map((s, order) => ({ s, order, score: closeness(s) }))
+    .sort((a, b) => b.score - a.score || a.order - b.order)
     .slice(0, 3)
-    .map(expandStay);
+    .map(({ s }) => expandStay(s));
 
   res.json({ stay: expandStay(stay), related });
 });

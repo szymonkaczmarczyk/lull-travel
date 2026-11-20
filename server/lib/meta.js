@@ -15,7 +15,7 @@ export function clamp(text, max = 165) {
 
 export function metaTags({ title, description, path = '/', type = 'website', noindex = false }) {
   const url = SITE + path;
-  const full = title === NAME ? title : `${title} — ${NAME}`;
+  const full = title === NAME ? title : `${title} – ${NAME}`;
 
   return [
     `<title>${escAttr(full)}</title>`,

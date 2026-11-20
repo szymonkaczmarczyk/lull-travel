@@ -40,7 +40,7 @@ export function statusTag(key) {
 }
 
 export function head({ crumbs = [], title, sub = '', actions = '' }) {
-  document.title = `${String(title).replace(/\.$/, '')} — LULL admin`;
+  document.title = `${String(title).replace(/\.$/, '')} – LULL admin`;
   const trail = crumbs
     .map(([href, label]) => (href ? `<a href="${esc(href)}">${esc(label)}</a>` : `<span>${esc(label)}</span>`))
     .join('<span>/</span>');

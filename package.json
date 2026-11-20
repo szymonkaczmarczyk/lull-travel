@@ -1,7 +1,7 @@
 {
   "name": "lull",
   "version": "1.0.0",
-  "description": "LULL — hand-picked stays in quiet, out-of-the-way places.",
+  "description": "LULL: hand-picked stays in quiet, out-of-the-way places.",
   "type": "module",
   "main": "server/index.js",
   "scripts": {

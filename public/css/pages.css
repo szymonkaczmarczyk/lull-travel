@@ -89,8 +89,8 @@
   align-items: center;
   gap: 12px;
   font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
+  font-size: var(--text-label);
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-faint);
 }
@@ -145,7 +145,7 @@
   flex: none;
   width: 26px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--text-label);
   color: var(--teal);
 }
 .manifesto__note dd {
@@ -190,8 +190,8 @@
 .step:hover { background: rgba(251, 247, 240, 0.018); }
 .step__n {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: var(--text-label);
+  letter-spacing: var(--track-label);
   color: var(--teal);
   padding-top: 6px;
 }
@@ -245,8 +245,8 @@
   align-items: center;
   gap: 10px;
   font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: var(--text-label);
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-faint);
 }
@@ -278,12 +278,12 @@
 .chip {
   padding: 8px 15px;
   border: 1px solid var(--hair-soft);
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: transparent;
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: var(--text-label);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-dim);
   cursor: pointer;
@@ -300,8 +300,8 @@
 .filters__count {
   margin-left: auto;
   font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: var(--text-label);
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
@@ -374,7 +374,7 @@
   color: var(--ink-muted);
 }
 .book__row:last-child { border-bottom: 0; }
-.book__row dt { color: var(--ink-faint); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+.book__row dt { color: var(--ink-faint); font-family: var(--mono); font-size: var(--text-label); letter-spacing: var(--track-label); text-transform: uppercase; }
 .book__row dd { margin: 0; font-weight: 500; }
 
 
@@ -419,9 +419,9 @@
 .catch__icon { flex: none; color: #e0785c; margin-top: 2px; }
 .catch h4 {
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: var(--text-label);
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: #e0785c;
   margin-bottom: 8px;
@@ -520,7 +520,7 @@
   flex: none;
   width: 22px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--text-label);
   font-weight: 500;
   color: var(--teal);
 }
@@ -540,11 +540,11 @@
 .sent__ref {
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--track-label);
   color: var(--teal);
   padding: 8px 14px;
   border: 1px solid rgba(42, 169, 184, 0.34);
-  border-radius: 999px;
+  border-radius: var(--radius);
 }
 
 
@@ -579,7 +579,7 @@
 .person:hover .person__art img,
 .person__art:hover img { transform: scale(1.03); }
 .person__name { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.03em; }
-.person__role { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-top: 6px; }
+.person__role { font-family: var(--mono); font-size: var(--text-label); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--teal); margin-top: 6px; }
 .person__bio { font-size: 14.5px; line-height: 1.6; color: var(--ink-dim); margin-top: 12px; }
 @media (max-width: 820px) { .people { grid-template-columns: 1fr; } }
 
@@ -606,8 +606,8 @@
 }
 
 .credits { list-style: none; padding: 0; margin: 32px 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-.credit { display: flex; gap: 16px; align-items: flex-start; padding: 16px; border: 1px solid var(--hair); border-radius: 14px; background: var(--glass); }
-.credit__thumb { width: 96px; height: 72px; object-fit: cover; border-radius: 8px; flex: none; }
+.credit { display: flex; gap: 16px; align-items: flex-start; padding: 16px; border: 1px solid var(--hair); border-radius: var(--radius-panel); background: var(--glass); }
+.credit__thumb { width: 96px; height: 72px; object-fit: cover; border-radius: var(--radius); flex: none; }
 .credit__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .credit__place { font-size: 12px; letter-spacing: .01em; text-transform: uppercase; color: var(--ink-dim); margin: 0; }
 .credit__title { font-size: 15px; line-height: 1.4; margin: 0; overflow-wrap: anywhere; }

@@ -15,12 +15,12 @@ bundlera, bez kroku budowania. Jedyna zależność produkcyjna to `express`.
 
 ## Dla kogo
 
-- **Dla małego biura podróży lub zespołu 2–5 osób**, który sprzedaje przez rozmowę, a nie przez koszyk.
+- **Dla małego biura podróży lub zespołu 2-5 osób**, który sprzedaje przez rozmowę, a nie przez koszyk.
   Klient zostawia zapytanie, konkretna osoba je czyta i odpisuje. System pilnuje, żeby zapytanie trafiło
   do właściwej skrzynki i żeby nic nie zginęło.
 - **Dla deweloperów i agencji**, którzy szukają punktu wyjścia pod stronę z katalogiem ofert i CMS-em,
   ale bez kosztu utrzymania Next.js, WordPressa czy headless CMS-a. Kod da się przeczytać w jedno popołudnie.
-- **Dla integratorów**, którzy chcą pobierać katalog przez API albo wysyłać zapytania z innego źródła —
+- **Dla integratorów**, którzy chcą pobierać katalog przez API albo wysyłać zapytania z innego źródła -
   pełna dokumentacja w [`docs/api-documentation.pdf`](docs/api-documentation.pdf).
 
 Nie jest to system rezerwacyjny: nie ma płatności, kalendarza dostępności ani kont klientów. To świadomy wybór.
@@ -48,7 +48,7 @@ Przy pierwszym uruchomieniu na pustej bazie treści wgrywają się same z plikó
 2. Routing przypisuje zapytanie do skrzynki według regionu (np. Lofoten → Oslo desk). Gdy żadna reguła
    nie pasuje, zapytanie trafia do skrzynki domyślnej.
 3. Zapytanie zapisuje się z pierwszym statusem z listy (domyślnie *New*).
-4. Handler dostaje mail z całym zapytaniem (Reply-To = klient), a klient — potwierdzenie (Reply-To = handler).
+4. Handler dostaje mail z całym zapytaniem (Reply-To = klient), a klient - potwierdzenie (Reply-To = handler).
 5. W panelu zespół zmienia statusy, przekazuje zapytanie innej skrzynce, wysyła kopię na zewnątrz
    i dodaje notatki. Każda z tych rzeczy trafia do historii zapytania.
 
@@ -73,12 +73,12 @@ Resend; SMTP łatwo dopisać).
 
 **Panel `/admin`**
 
-- **Overview** — liczniki, zapytania według statusów, ostatnie zapytania i maile.
-- **Enquiries** — lista z filtrami, wyszukiwarką i eksportem CSV; szczegóły z historią i mailami.
-- **Stays / Destinations / Journal** — formularze generowane ze schematu, podgląd karty, walidacja.
-- **Settings** — skrzynki, reguły routingu, statusy (z mailami do klienta lub notkami do zespołu),
+- **Overview** - liczniki, zapytania według statusów, ostatnie zapytania i maile.
+- **Enquiries** - lista z filtrami, wyszukiwarką i eksportem CSV; szczegóły z historią i mailami.
+- **Stays / Destinations / Journal** - formularze generowane ze schematu, podgląd karty, walidacja.
+- **Settings** - skrzynki, reguły routingu, statusy (z mailami do klienta lub notkami do zespołu),
   szablony maili z placeholderami i podglądem, nadawca, mail testowy.
-- **Outbox** — każdy mail, jaki system przygotował, z informacją, czy wyszedł.
+- **Outbox** - każdy mail, jaki system przygotował, z informacją, czy wyszedł.
 
 ## Zrzuty ekranu
 
@@ -118,7 +118,7 @@ cp .env.example .env    # uzupełnij ADMIN_EMAIL, ADMIN_PASSWORD, SESSION_SECRET
 npm run dev             # http://localhost:3000, panel: /admin
 ```
 
-Bez kluczy Supabase aplikacja działa na plikach lokalnych w `server/data/` — do pracy lokalnej nie trzeba
+Bez kluczy Supabase aplikacja działa na plikach lokalnych w `server/data/` - do pracy lokalnej nie trzeba
 nic więcej. Konsola po starcie pokazuje, jaka baza i jaki transport maili są aktywne.
 
 | Skrypt | Co robi |
@@ -134,11 +134,11 @@ Wszystko w `.env` (wzór w `.env.example`, sam `.env` jest w `.gitignore`).
 | Zmienna | Opis |
 |---|---|
 | `PORT` | Port serwera, domyślnie `3000` |
-| `SITE_URL` | Pełny adres strony — canonical, Open Graph, sitemap i linki w mailach. **Ustaw przed wdrożeniem.** |
+| `SITE_URL` | Pełny adres strony - canonical, Open Graph, sitemap i linki w mailach. **Ustaw przed wdrożeniem.** |
 | `TRUST_PROXY` | `1` za reverse proxy, inaczej wszyscy odwiedzający dzielą jeden limit żądań |
 | `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Logowanie do panelu. Puste = panel wyłączony |
 | `SESSION_SECRET` | Klucz do podpisywania sesji. Bez niego sesje giną przy restarcie |
-| `SUPABASE_URL`, `SUPABASE_SECRET_KEY` | Baza w chmurze. Puste = pliki lokalne |
+| `SUPABASE_URL`, `SUPABASE_SECRET_KEY` | Baza w chmurze. Puste albo nieosiągalne (np. wstrzymany projekt) = pliki lokalne, z ostrzeżeniem w konsoli |
 | `MAIL_TRANSPORT` | `log` (domyślnie, nic nie wychodzi) lub `resend` |
 | `RESEND_API_KEY` | Klucz Resend, gdy `MAIL_TRANSPORT=resend` |
 
@@ -148,7 +148,7 @@ Wszystko w `.env` (wzór w `.env.example`, sam `.env` jest w `.gitignore`).
 2. W **SQL Editor** uruchom całą zawartość [`supabase/schema.sql`](supabase/schema.sql).
 3. Do `.env`: `SUPABASE_URL=https://<project-id>.supabase.co` i `SUPABASE_SECRET_KEY` (klucz `sb_secret_…`
    albo starszy `service_role`). Nie używaj kluczy publishable/anon.
-4. Zrestartuj serwer — w konsoli pojawi się `database  supabase`.
+4. Zrestartuj serwer - w konsoli pojawi się `database  supabase`.
 
 Tabele mają włączone RLS bez polityk: dostęp ma wyłącznie klucz serwerowy, nigdy przeglądarka.
 
@@ -161,11 +161,11 @@ server/
   lib/              store, enquiries (routing i obsługa), mail, settings, schema, auth, security, kompresja
   routes/           jeden router na zasób; admin.js to całe API panelu
   views/            szablony HTML stron i panelu
-  data/*.json       dane seed — nigdy nie nadpisywane w trakcie działania
+  data/*.json       dane seed - nigdy nie nadpisywane w trakcie działania
   scripts/seed.js   reset treści
 public/
   css/              base (tokeny) → components → pages / admin
-  js/               moduły ES strony; js/admin/ — panel
+  js/               moduły ES strony; js/admin/ - panel
   img/              zdjęcia w dwóch szerokościach
 supabase/schema.sql schemat bazy
 docs/
@@ -199,16 +199,16 @@ zaktualizować jeden wpis.
 
 Zdjęcia są stonowane w CSS, a nie w plikach: `.art` w `public/css/base.css` nakłada na każde ciepły filtr,
 turkusowo-bursztynowy odcień i ziarno, dzięki czemu fiord w Arktyce i zachód słońca w Kalahari wyglądają jak
-jedna sesja. Każdy rekord ma też `tone: [cień, światło]` — kolor widoczny przed wczytaniem zdjęcia.
+jedna sesja. Każdy rekord ma też `tone: [cień, światło]` - kolor widoczny przed wczytaniem zdjęcia.
 
-Trzy portrety założycieli to twarze wygenerowane przez GAN (thispersondoesnotexist.com) — przedstawione osoby
+Trzy portrety założycieli to twarze wygenerowane przez GAN (thispersondoesnotexist.com) - przedstawione osoby
 nie istnieją.
 
 ## Dokumentacja
 
-- [`docs/api-documentation.pdf`](docs/api-documentation.pdf) — wszystkie endpointy publiczne i panelu,
+- [`docs/api-documentation.pdf`](docs/api-documentation.pdf) - wszystkie endpointy publiczne i panelu,
   parametry, przykłady żądań i odpowiedzi, kody błędów.
-- [`docs/admin.md`](docs/admin.md) — jak zbudowany jest panel, konfiguracja Supabase i maili, przepis na
+- [`docs/admin.md`](docs/admin.md) - jak zbudowany jest panel, konfiguracja Supabase i maili, przepis na
   nowy endpoint.
 
 ## Licencja

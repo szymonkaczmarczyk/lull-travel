@@ -8,7 +8,7 @@
     "lon": 13.61,
     "tagline": "Sea cliffs, low sun, and nobody for miles.",
     "summary": "An archipelago that sits above the Arctic Circle and still stays green. Fishing villages on stilts, granite walls straight out of the water, and light that refuses to leave in summer.",
-    "bestMonths": "Feb–Apr, Jun–Aug",
+    "bestMonths": "Feb-Apr, Jun-Aug",
     "flightTime": "3h 40m from Oslo",
     "tone": [
       "#2f4f5e",
@@ -27,7 +27,7 @@
     "lon": -7.87,
     "tagline": "Cork oaks, long lunches, and heat that slows you down.",
     "summary": "Portugal's quiet interior. Wheat plains, whitewashed hill towns, and a pace that hasn't changed much since the vines went in. The nearest traffic light is usually an hour away.",
-    "bestMonths": "Apr–Jun, Sep–Oct",
+    "bestMonths": "Apr-Jun, Sep-Oct",
     "flightTime": "1h 30m from Lisbon",
     "tone": [
       "#7a5c3a",
@@ -46,7 +46,7 @@
     "lon": 135.83,
     "tagline": "Cedar forest, pilgrim trails, and river mist at dawn.",
     "summary": "South of Osaka the country folds into mountains and stops. Thousand-year pilgrimage routes, hot springs cut into riverbeds, and ryokan where dinner arrives in eleven small dishes.",
-    "bestMonths": "Mar–May, Oct–Nov",
+    "bestMonths": "Mar-May, Oct-Nov",
     "flightTime": "2h 10m from Osaka",
     "tone": [
       "#2c4438",
@@ -65,7 +65,7 @@
     "lon": 14.94,
     "tagline": "Volcanic rock, caper fields, and boats instead of roads.",
     "summary": "Seven islands off Sicily's north coast, most of them without a car worth mentioning. Black sand, white cubic houses, and an active volcano that puts on a show after dark.",
-    "bestMonths": "May–Jun, Sep",
+    "bestMonths": "May-Jun, Sep",
     "flightTime": "2h 00m from Naples",
     "tone": [
       "#3a3340",
@@ -84,7 +84,7 @@
     "lon": -68.2,
     "tagline": "The driest place on earth, and the clearest sky above it.",
     "summary": "Salt flats, geyser fields, and altitude that makes the horizon feel curved. At night the Milky Way is bright enough to read the ground by.",
-    "bestMonths": "Mar–May, Sep–Nov",
+    "bestMonths": "Mar-May, Sep-Nov",
     "flightTime": "2h 00m from Santiago",
     "tone": [
       "#5c3b34",
@@ -103,7 +103,7 @@
     "lon": -23.13,
     "tagline": "The part of Iceland the buses never reach.",
     "summary": "A fist of land in the northwest, connected by one road that closes when it feels like it. Bird cliffs, hot pots on empty beaches, and roughly seven thousand people in an area the size of Wales.",
-    "bestMonths": "Jun–Aug",
+    "bestMonths": "Jun-Aug",
     "flightTime": "45m from Reykjavík",
     "tone": [
       "#33454e",
@@ -122,7 +122,7 @@
     "lon": -10.24,
     "tagline": "Weather that changes four times before lunch.",
     "summary": "Peninsulas reaching into the Atlantic, stone forts older than most countries, and a coastline that rewards anyone willing to drive slowly with the windows down.",
-    "bestMonths": "May–Sep",
+    "bestMonths": "May-Sep",
     "flightTime": "1h 20m from Dublin",
     "tone": [
       "#2f4438",
@@ -140,8 +140,8 @@
     "lat": -22.5,
     "lon": 23,
     "tagline": "Red sand, low thorn, and silence with a floor to it.",
-    "summary": "Not a desert in the empty sense — a semi-arid savanna that turns green after rain and holds some of the last true dark-sky country on the continent.",
-    "bestMonths": "May–Sep",
+    "summary": "Not a desert in the empty sense. It is a semi-arid savanna that turns green after rain and holds some of the last true dark-sky country on the continent.",
+    "bestMonths": "May-Sep",
     "flightTime": "1h 30m from Maun",
     "tone": [
       "#6b3f2e",

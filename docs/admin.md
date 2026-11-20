@@ -1,4 +1,4 @@
-# LULL — panel administracyjny, baza i maile
+# LULL – panel administracyjny, baza i maile
 
 Ten dokument opisuje, co zostało dobudowane, jak to uruchomić i jak samemu dokładać kolejne endpointy.
 
@@ -26,7 +26,7 @@ server/
 public/
   css/admin.css      style panelu, tylko tokeny z base.css
   js/admin/          panel: main.js (router, logowanie), state.js, ui.js, views/*
-supabase/schema.sql  tabele, widok, RLS — wklejasz raz w SQL Editor
+supabase/schema.sql  tabele, widok, RLS - wklejasz raz w SQL Editor
 .env / .env.example  konfiguracja
 ```
 
@@ -59,15 +59,15 @@ Dane logowania do panelu są w `.env` (`ADMIN_EMAIL`, `ADMIN_PASSWORD`).
 ## 3. Jak postawiony jest endpoint listy zapytań (i jak robić kolejne)
 
 Wcześniej był tylko zapis (`POST /api/enquiries`) i licznik. Teraz lista to
-`GET /api/admin/enquiries`, chroniona logowaniem. Zbudowana jest z trzech warstw — ten sam przepis
+`GET /api/admin/enquiries`, chroniona logowaniem. Zbudowana jest z trzech warstw - ten sam przepis
 działa dla każdego nowego endpointu.
 
-### Warstwa 1 — sterownik bazy (`server/db/*.js`)
+### Warstwa 1 – sterownik bazy (`server/db/*.js`)
 
 Każdy sterownik eksportuje **te same funkcje** z tymi samymi argumentami. Reszta aplikacji woła
 `db.listEnquiries(...)` i nie wie, czy pod spodem jest plik czy Supabase.
 
-Plik (`server/db/file.js`) — filtruje tablicę w JS:
+Plik (`server/db/file.js`) - filtruje tablicę w JS:
 
 ```js
 export async function listEnquiries({ status, assignee, q, limit = 50, offset = 0 } = {}) {
@@ -78,7 +78,7 @@ export async function listEnquiries({ status, assignee, q, limit = 50, offset = 
 }
 ```
 
-Supabase (`server/db/supabase.js`) — to samo, ale filtry idą w URL do PostgREST:
+Supabase (`server/db/supabase.js`) - to samo, ale filtry idą w URL do PostgREST:
 
 ```js
 const params = {
@@ -92,10 +92,10 @@ return { total: totalFrom(res), results: data.map(fromRow) };
 ```
 
 - `eq.`, `ilike.`, `is.null` to operatory PostgREST (`?status=eq.new` = `WHERE status = 'new'`).
-- `Prefer: count=exact` każe Supabase zwrócić łączną liczbę w nagłówku `Content-Range` — stąd paginacja.
+- `Prefer: count=exact` każe Supabase zwrócić łączną liczbę w nagłówku `Content-Range` - stąd paginacja.
 - `fromRow` tłumaczy kolumny z bazy (`received_at`) na nazwy używane w JS (`receivedAt`).
 
-### Warstwa 2 — trasa (`server/routes/admin.js`)
+### Warstwa 2 – trasa (`server/routes/admin.js`)
 
 ```js
 router.use(requireAdmin);
@@ -111,12 +111,12 @@ router.get(
 );
 ```
 
-- `router.use(requireAdmin)` — wszystko **pod** tą linią wymaga zalogowania (401 bez ciasteczka).
+- `router.use(requireAdmin)` - wszystko **pod** tą linią wymaga zalogowania (401 bez ciasteczka).
 - `wrap(...)` łapie błędy z funkcji `async` i oddaje je do handlera błędów na końcu pliku (JSON zamiast HTML).
-- `int(...)` i `str(...)` przycinają to, co przyszło w query — nigdy nie ufamy parametrom z zewnątrz.
+- `int(...)` i `str(...)` przycinają to, co przyszło w query - nigdy nie ufamy parametrom z zewnątrz.
 - Router jest podpięty w `server/index.js`: `app.use('/api/admin', adminRoutes)`.
 
-### Warstwa 3 — panel (`public/js/admin/*`)
+### Warstwa 3 – panel (`public/js/admin/*`)
 
 ```js
 const data = await adm(`/enquiries?status=new&limit=50`);
@@ -129,7 +129,7 @@ ciasteczko i przy 401 pokazuje ekran logowania.
 
 Przykład: liczba zapytań na region, `GET /api/admin/enquiries-by-region`.
 
-1. **Sterownik plikowy** — dopisz funkcję w `server/db/file.js`:
+1. **Sterownik plikowy** - dopisz funkcję w `server/db/file.js`:
    ```js
    export async function regionCounts() {
      return allEnquiries().reduce((acc, e) => {
@@ -138,7 +138,7 @@ Przykład: liczba zapytań na region, `GET /api/admin/enquiries-by-region`.
      }, {});
    }
    ```
-2. **Sterownik Supabase** — ta sama nazwa w `server/db/supabase.js`. Najprościej przez widok SQL
+2. **Sterownik Supabase** - ta sama nazwa w `server/db/supabase.js`. Najprościej przez widok SQL
    (jak `enquiry_status_counts` w `supabase/schema.sql`):
    ```sql
    create or replace view public.enquiry_region_counts with (security_invoker = true) as
@@ -151,7 +151,7 @@ Przykład: liczba zapytań na region, `GET /api/admin/enquiries-by-region`.
      return Object.fromEntries(data.map((r) => [r.region, r.count]));
    }
    ```
-3. **Trasa** — w `server/routes/admin.js`, gdzieś pod `router.use(requireAdmin)`:
+3. **Trasa** - w `server/routes/admin.js`, gdzieś pod `router.use(requireAdmin)`:
    ```js
    router.get('/enquiries-by-region', wrap(async (_req, res) => {
      res.json({ counts: await db.regionCounts() });
@@ -181,21 +181,21 @@ zwracaj danych osobowych z zapytań.
 | GET | `/api/admin/enquiries.csv` | eksport CSV z tymi samymi filtrami |
 | GET | `/api/admin/enquiries/:id` | jedno zapytanie + jego maile + sugestia routingu |
 | PATCH | `/api/admin/enquiries/:id` | `{status}` lub `{assignee, note}` |
-| POST | `/api/admin/enquiries/:id/notes` | `{text}` — notatka wewnętrzna |
-| POST | `/api/admin/enquiries/:id/forward` | `{to, note}` — kopia na dowolny adres |
+| POST | `/api/admin/enquiries/:id/notes` | `{text}` - notatka wewnętrzna |
+| POST | `/api/admin/enquiries/:id/forward` | `{to, note}` - kopia na dowolny adres |
 | DELETE | `/api/admin/enquiries/:id` | usuwa zapytanie |
 | GET | `/api/admin/schema` | definicje pól CMS + lista zdjęć z `public/img/card` |
 | GET/POST | `/api/admin/content/:collection` | lista / nowy wpis (`stays`, `destinations`, `journal`) |
 | GET/PUT/DELETE | `/api/admin/content/:collection/:slug` | odczyt / zapis / usunięcie wpisu |
 | GET | `/api/admin/settings` | wszystkie ustawienia |
 | PUT | `/api/admin/settings/:key` | `mail`, `mailboxes`, `routing`, `statuses`, `templates` |
-| POST | `/api/admin/settings/test-mail` | `{to}` — mail testowy |
+| POST | `/api/admin/settings/test-mail` | `{to}` - mail testowy |
 | GET | `/api/admin/outbox` | ostatnie maile (`?limit=`) |
 
-## 4. Baza danych w chmurze — Supabase
+## 4. Baza danych w chmurze – Supabase
 
 Wybrałem Supabase (Postgres): darmowy plan wystarcza z zapasem, wideo na stronie już stoi na Supabase,
-a z Node rozmawiamy przez zwykłe `fetch` do REST API — bez nowych zależności. SQLite odpadł, bo na
+a z Node rozmawiamy przez zwykłe `fetch` do REST API - bez nowych zależności. SQLite odpadł, bo na
 większości hostingów (Vercel, Render free, Railway bez wolumenu) plik bazy znika przy każdym deployu.
 
 ### Co musisz zrobić (ok. 5 minut)
@@ -208,7 +208,7 @@ większości hostingów (Vercel, Render free, Railway bez wolumenu) plik bazy zn
 3. **Project Settings → API Keys**:
    - skopiuj **Project URL** (np. `https://abcd1234.supabase.co`) → `SUPABASE_URL`
    - w zakładce z nowymi kluczami skopiuj **secret key** (`sb_secret_...`) → `SUPABASE_SECRET_KEY`.
-     Działa też stary `service_role` (zaczyna się od `eyJ...`) — wtedy wklej go w to samo pole.
+     Działa też stary `service_role` (zaczyna się od `eyJ...`) - wtedy wklej go w to samo pole.
 4. Zrestartuj serwer. W konsoli powinno być `database  supabase`.
 5. Przy pierwszym starcie aplikacja sama wgra stays / destinations / journal z plików seed do tabeli
    `entries`. Ustawienia CMS zapiszą się przy pierwszym „Save” w panelu (do tego czasu działają domyślne).
@@ -261,15 +261,15 @@ W panelu widać dokładnie, co i do kogo by poszło.
    odpowiedź z poczty trafia prosto do niego.
 5. Jeśli włączone: potwierdzenie do klienta, szablon *Receipt*. Reply-To = handler.
 
-Maile idą **po** odpowiedzi do przeglądarki — awaria poczty nigdy nie blokuje formularza.
+Maile idą **po** odpowiedzi do przeglądarki - awaria poczty nigdy nie blokuje formularza.
 
 ### W panelu
 
-- **Zmiana statusu** — każdy status ma przełączniki: *Email the customer* (własny temat i treść),
+- **Zmiana statusu** - każdy status ma przełączniki: *Email the customer* (własny temat i treść),
   *Note to the handler*, *Closes the enquiry* (nie liczy się jako otwarte).
-- **Pass it on** — zmienia handlera i wysyła mu całe zapytanie z notatką.
-- **Forward a copy** — kopia na dowolny adres (przewodnik, gospodarz), handler bez zmian.
-- **Internal note** — tylko w historii, nic nie wychodzi.
+- **Pass it on** - zmienia handlera i wysyła mu całe zapytanie z notatką.
+- **Forward a copy** - kopia na dowolny adres (przewodnik, gospodarz), handler bez zmian.
+- **Internal note** - tylko w historii, nic nie wychodzi.
 - Szablony: zwykły tekst z `{{placeholderami}}`, podgląd na przykładowych danych w *Settings → Email templates*.
 
 ### Gdy zechcesz wysyłać naprawdę
@@ -279,19 +279,19 @@ Maile idą **po** odpowiedzi do przeglądarki — awaria poczty nigdy nie blokuj
 2. `.env`: `MAIL_TRANSPORT=resend`, `RESEND_API_KEY=re_...`.
 3. W *Settings → Sender* ustaw adres z tej domeny. Wyślij test.
 
-**Inny dostawca / SMTP** — dopisz transport w obiekcie `transports` w `server/lib/mail.js`.
+**Inny dostawca / SMTP** - dopisz transport w obiekcie `transports` w `server/lib/mail.js`.
 Funkcja dostaje `{ from, to[], replyTo, subject, text }` i ma zwrócić `{ status: 'sent' }` albo
 rzucić błąd. Dla SMTP: `npm install nodemailer` i `nodemailer.createTransport(...).sendMail(...)`
 w środku takiej funkcji. Nic więcej w aplikacji nie trzeba zmieniać.
 
-## 7. Bezpieczeństwo — co jest zrobione
+## 7. Bezpieczeństwo – co jest zrobione
 
 - Hasło porównywane w stałym czasie; logowanie ograniczone do 10 prób na 15 minut z jednego IP.
 - Sesja w ciasteczku `HttpOnly; SameSite=Strict` (+ `Secure` po HTTPS), podpisana HMAC, ważna 12 h.
 - Zapytania zmieniające dane z obcego `Origin` są odrzucane (403).
 - `/admin` i `/api/admin` mają `noindex` i `Cache-Control: no-store`; `/admin` jest w `robots.txt`.
 - Wszystko, co przychodzi z formularzy, jest walidowane na serwerze; wszystko, co trafia do HTML, przez `esc()`.
-- W Supabase RLS jest włączony bez polityk — dostęp ma tylko klucz serwerowy.
+- W Supabase RLS jest włączony bez polityk - dostęp ma tylko klucz serwerowy.
 - Eksport CSV neutralizuje formuły (`=`, `+`, `-`, `@` na początku komórki).
 
 ## 8. Co można dobudować później

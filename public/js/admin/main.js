@@ -28,7 +28,7 @@ const NAV = [
 ];
 
 function renderLogin({ notice = '', off = false } = {}) {
-  document.title = 'Sign in — LULL';
+  document.title = 'Sign in – LULL';
   root.innerHTML = `
     <div class="adm-login">
       <div class="adm-login__card rise">

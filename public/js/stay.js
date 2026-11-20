@@ -7,7 +7,7 @@ const host = document.querySelector('[data-stay]');
 const slug = location.pathname.split('/').filter(Boolean).pop();
 
 function render({ stay: s, related }) {
-  document.title = `${s.name} — LULL`;
+  document.title = `${s.name} – LULL`;
   setPageTone(s.tone); 
   setPageBackdrop(s.image);
   const where = s.destination ? `${s.destination.name}, ${s.destination.country}` : '';
@@ -78,7 +78,7 @@ function render({ stay: s, related }) {
             <div class="book__row"><dt>Type</dt><dd>${esc(s.type)}</dd></div>
             <div class="book__row"><dt>Sleeps</dt><dd>${s.sleeps} in ${s.bedrooms} ${s.bedrooms === 1 ? 'bedroom' : 'bedrooms'}</dd></div>
             <div class="book__row"><dt>Rating</dt><dd><span class="u-teal">★</span> ${s.rating.toFixed(1)} · ${s.reviews} stays</dd></div>
-            <div class="book__row"><dt>Region</dt><dd>${esc(s.destination?.region ?? '—')}</dd></div>
+            <div class="book__row"><dt>Region</dt><dd>${esc(s.destination?.region ?? '-')}</dd></div>
           </dl>
 
           <a class="btn btn--wide" href="/plan?stay=${esc(s.slug)}">

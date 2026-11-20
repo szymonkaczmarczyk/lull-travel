@@ -8,7 +8,7 @@ const bar = document.querySelector('[data-progress]');
 const slug = location.pathname.split('/').filter(Boolean).pop();
 
 function render({ article: a, prev, next }) {
-  document.title = `${a.title} — LULL`;
+  document.title = `${a.title} – LULL`;
   setPageTone(a.tone);
   setPageBackdrop(a.image);
 

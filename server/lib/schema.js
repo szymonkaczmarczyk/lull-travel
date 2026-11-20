@@ -49,7 +49,7 @@ export const SCHEMA = {
       { key: 'region', label: 'Wider region', type: 'text', group: 'Basics', required: true, max: 60 },
       { key: 'tagline', label: 'Tagline', type: 'text', group: 'Basics', required: true, max: 120, wide: true },
       { key: 'summary', label: 'Summary', type: 'textarea', group: 'Basics', required: true, max: 600, wide: true },
-      { key: 'bestMonths', label: 'Best months', type: 'text', group: 'Details', max: 40, hint: 'Feb–Apr, Jun–Aug' },
+      { key: 'bestMonths', label: 'Best months', type: 'text', group: 'Details', max: 40, hint: 'Feb-Apr, Jun-Aug' },
       { key: 'flightTime', label: 'Flight time', type: 'text', group: 'Details', max: 60, hint: '3h 40m from Oslo' },
       { key: 'lat', label: 'Latitude', type: 'number', group: 'Details', required: true, min: -90, max: 90, step: 0.01, default: 0 },
       { key: 'lon', label: 'Longitude', type: 'number', group: 'Details', required: true, min: -180, max: 180, step: 0.01, default: 0 },

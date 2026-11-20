@@ -25,6 +25,11 @@ async function rest(path, { method = 'GET', body, prefer } = {}) {
   return { data, res };
 }
 
+export async function ping() {
+  const res = await fetch(`${BASE}/`, { headers: AUTH, signal: AbortSignal.timeout(5000) });
+  await res.body?.cancel();
+}
+
 const totalFrom = (res) => Number(res.headers.get('content-range')?.split('/')[1]) || 0;
 
 export async function listEntries(collection) {

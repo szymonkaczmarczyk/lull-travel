@@ -7,7 +7,7 @@ const host = document.querySelector('[data-dest]');
 const slug = location.pathname.split('/').filter(Boolean).pop();
 
 function render({ destination: d, stays }) {
-  document.title = `${d.name}, ${d.country} — LULL`;
+  document.title = `${d.name}, ${d.country} – LULL`;
   setPageTone(d.tone);
   setPageBackdrop(d.image);
 

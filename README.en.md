@@ -139,7 +139,7 @@ Everything in `.env` (template in `.env.example`, `.env` itself is in `.gitignor
 | `TRUST_PROXY` | `1` behind a reverse proxy, otherwise all visitors share one rate limit |
 | `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Panel login. Empty = panel disabled |
 | `SESSION_SECRET` | Key for signing sessions. Without it sessions are lost on restart |
-| `SUPABASE_URL`, `SUPABASE_SECRET_KEY` | Cloud database. Empty = local files |
+| `SUPABASE_URL`, `SUPABASE_SECRET_KEY` | Cloud database. Empty or unreachable (e.g. a paused project) = local files, with a warning in the console |
 | `MAIL_TRANSPORT` | `log` (default, nothing is sent) or `resend` |
 | `RESEND_API_KEY` | Resend key, when `MAIL_TRANSPORT=resend` |
 
