@@ -504,6 +504,8 @@ curl -b cookies.txt https://&lt;twoja-domena&gt;/api/admin/enquiries?status=new<
     <tr><td><code>stay</code></td><td>nie</td><td>Slug obiektu z <code>/api/stays</code>. Pusty = klient prosi o shortlistę.</td></tr>
     <tr><td><code>month</code></td><td>nie</td><td>Orientacyjny termin, dowolny tekst do 40 znaków, np. <code>February 2027</code>.</td></tr>
     <tr><td><code>message</code></td><td>nie</td><td>Wiadomość, do 2000 znaków.</td></tr>
+    <tr><td><code>consent</code></td><td>tak</td><td>Musi być <code>true</code>: klient zaznaczył, że zna politykę prywatności i regulamin.</td></tr>
+    <tr><td><code>website</code></td><td>nie</td><td>Pułapka na boty (honeypot), w formularzu ukryta. Wypełnione pole daje odpowiedź 201 bez zapisu.</td></tr>
   </table>
   <h4>Przykład żądania</h4>
 <pre>POST https://&lt;twoja-domena&gt;/api/enquiries
@@ -511,12 +513,13 @@ Content-Type: application/json
 
 {"name": "Ines Aro", "email": "ines@example.com", "party": 2,
  "destination": "lofoten", "month": "February 2027",
- "message": "We would rather be cold than crowded."}</pre>
+ "message": "We would rather be cold than crowded.", "consent": true}</pre>
   <h4>Odpowiedź – błąd walidacji (422)</h4>
 <pre>{"error": "Validation failed.", "fields": {
   "name": "Tell us what to call you.",
   "email": "That email address does not look right.",
-  "party": "Party size must be between 1 and 12."
+  "party": "Party size must be between 1 and 12.",
+  "consent": "Tick the box so we can use your details to reply."
 }}</pre>
   <h4>Odpowiedź – przekroczony limit (429)</h4>
 <pre>{"error": "That is a lot of enquiries. Give us an hour to catch up, or email hello@lull.travel.", "retryAfter": 3412}</pre>

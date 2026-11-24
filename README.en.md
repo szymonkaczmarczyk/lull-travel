@@ -127,6 +127,7 @@ start the console shows which database and which email transport are active.
 | `npm start` | Production server |
 | `npm run dev` | Server with automatic restart on file changes |
 | `npm run db:seed` | Resets content to the seed files (asks for `--yes` confirmation, does not touch enquiries) |
+| `npm test` | Tests (`node:test`): form consent and honeypot, legal pages, Open Graph, sitemap, favicon, 404 |
 
 ## Configuration
 

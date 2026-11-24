@@ -7,9 +7,14 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
-    "db:seed": "node server/scripts/seed.js"
+    "db:seed": "node server/scripts/seed.js",
+    "test": "node --test"
   },
-  "engines": { "node": ">=18" },
-  "dependencies": { "express": "^4.19.2" },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.22.3"
+  },
   "license": "MIT"
 }

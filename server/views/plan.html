@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/components.css">
 <link rel="stylesheet" href="/css/pages.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -78,6 +79,23 @@
           <label class="field__label" for="message">Anything else</label>
           <textarea id="message" name="message" placeholder="What you want the week to feel like. Whether anyone needs to avoid stairs. Whether you would rather be cold than crowded."></textarea>
           <span class="field__error" data-error></span>
+        </div>
+
+        <div class="field visually-hidden" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field" data-field="consent">
+          <label class="consent" for="consent">
+            <input class="consent__box" id="consent" name="consent" type="checkbox" required aria-describedby="consent-error">
+            <span>
+              I have read the <a class="legal__link" href="/privacy" target="_blank" rel="noopener">privacy policy</a>
+              and agree that LULL uses my details to answer this enquiry, under the
+              <a class="legal__link" href="/terms" target="_blank" rel="noopener">terms of use</a>.
+            </span>
+          </label>
+          <span class="field__error" id="consent-error" data-error></span>
         </div>
 
         <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-top:8px">

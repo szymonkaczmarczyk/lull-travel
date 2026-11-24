@@ -1,6 +1,6 @@
 
 
-const SITE = process.env.SITE_URL || 'http://localhost:3000';
+const SITE = (process.env.SITE_URL || `http://localhost:${process.env.PORT || 3000}`).replace(/\/$/, '');
 const NAME = 'LULL';
 
 const escAttr = (s) =>
@@ -27,9 +27,14 @@ export function metaTags({ title, description, path = '/', type = 'website', noi
     `<meta property="og:title" content="${escAttr(full)}">`,
     `<meta property="og:description" content="${escAttr(description)}">`,
     `<meta property="og:url" content="${escAttr(url)}">`,
+    `<meta property="og:image" content="${SITE}/og-image.jpg">`,
+    '<meta property="og:image:width" content="1200">',
+    '<meta property="og:image:height" content="630">',
+    `<meta property="og:image:alt" content="${NAME}: hand-picked stays in quiet, out-of-the-way places">`,
     '<meta name="twitter:card" content="summary_large_image">',
     `<meta name="twitter:title" content="${escAttr(full)}">`,
     `<meta name="twitter:description" content="${escAttr(description)}">`,
+    `<meta name="twitter:image" content="${SITE}/og-image.jpg">`,
   ]
     .filter(Boolean)
     .join('\n');

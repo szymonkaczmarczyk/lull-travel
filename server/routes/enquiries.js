@@ -38,6 +38,9 @@ function validate(body) {
   if (stay && !stays.some((s) => s.slug === stay)) {
     errors.stay = 'We do not have that stay.';
   }
+  if (body.consent !== true) {
+    errors.consent = 'Tick the box so we can use your details to reply.';
+  }
 
   return {
     errors,
@@ -45,8 +48,19 @@ function validate(body) {
   };
 }
 
+const isBot = (body) => String(body.website ?? '').trim() !== '';
+
 router.post('/', limit, async (req, res, next) => {
-  const { errors, value } = validate(req.body ?? {});
+  const body = req.body ?? {};
+  if (isBot(body)) {
+    return res.status(201).json({
+      id: 'received',
+      receivedAt: new Date().toISOString(),
+      message: 'Thank you. We reply to every enquiry within one working day.',
+    });
+  }
+
+  const { errors, value } = validate(body);
   if (Object.keys(errors).length) return res.status(422).json({ error: 'Validation failed.', fields: errors });
 
   try {

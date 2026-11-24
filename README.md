@@ -126,6 +126,7 @@ nic więcej. Konsola po starcie pokazuje, jaka baza i jaki transport maili są a
 | `npm start` | Serwer produkcyjny |
 | `npm run dev` | Serwer z automatycznym restartem po zmianie plików |
 | `npm run db:seed` | Reset treści do plików seed (pyta o potwierdzenie `--yes`; zapytań nie rusza) |
+| `npm test` | Testy (`node:test`): zgoda i honeypot w formularzu, strony prawne, Open Graph, sitemap, favicon, 404 |
 
 ## Konfiguracja
 

@@ -48,9 +48,16 @@ function mountChrome() {
   const here = location.pathname;
   const isActive = (href) => here === href || here.startsWith(href + '/');
 
+  const main = document.querySelector('main');
+  if (main) {
+    main.id ||= 'main';
+    main.tabIndex = -1;
+  }
+
   document.body.insertAdjacentHTML(
     'afterbegin',
-    `<div class="pagebg" aria-hidden="true">
+    `${main ? `<a class="skip-link" href="#${main.id}">Skip to content</a>` : ''}
+     <div class="pagebg" aria-hidden="true">
        <div class="pagebg__photo"><img alt="" decoding="async"></div>
        <span class="pagebg__glow"></span>
        <span class="pagebg__glow pagebg__glow--warm"></span>
@@ -116,7 +123,7 @@ function mountChrome() {
         </div>
         <div class="footer__bottom">
           <span>© <span data-year></span> Lull Travel</span>
-          <span>14 stays · 8 regions · one road in · <a href="/credits">Photo credits</a></span>
+          <span>14 stays · 8 regions · one road in · <a href="/credits">Photo credits</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
         </div>
       </div>`;
   }

@@ -115,6 +115,8 @@ app.get('/sitemap.xml', (_req, res) => {
     { loc: '/about', priority: '0.5', changefreq: 'yearly' },
     { loc: '/plan', priority: '0.8', changefreq: 'yearly' },
     { loc: '/credits', priority: '0.2', changefreq: 'yearly' },
+    { loc: '/privacy', priority: '0.2', changefreq: 'yearly' },
+    { loc: '/terms', priority: '0.2', changefreq: 'yearly' },
     ...stays.map((s) => ({ loc: `/stays/${s.slug}`, priority: '0.8', changefreq: 'monthly' })),
     ...destinations.map((d) => ({ loc: `/destinations/${d.slug}`, priority: '0.7', changefreq: 'monthly' })),
     ...journal.map((a) => ({ loc: `/journal/${a.slug}`, priority: '0.6', changefreq: 'yearly', lastmod: a.date })),
@@ -134,7 +136,6 @@ app.get('/sitemap.xml', (_req, res) => {
   );
 });
 
-app.get('/favicon.ico', (_req, res) => res.redirect(301, '/favicon.svg'));
 
 
 
@@ -189,6 +190,18 @@ app.get('/about', page('about.html', {
   title: 'About',
   description: 'Three people, eight regions, and one rule: nothing goes on the list until someone here has slept in it.',
   path: '/about',
+}));
+
+app.get('/privacy', page('privacy.html', {
+  title: 'Privacy policy',
+  description: 'What LULL collects when you send an enquiry, why, who processes it, how long it is kept and how to use your GDPR rights.',
+  path: '/privacy',
+}));
+
+app.get('/terms', page('terms.html', {
+  title: 'Terms of use',
+  description: 'The rules for using the LULL site and the free shortlist we send after an enquiry. Bookings come with their own written terms.',
+  path: '/terms',
 }));
 
 app.get('/credits', (_req, res) => {

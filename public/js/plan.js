@@ -104,7 +104,7 @@ form.addEventListener('submit', async (e) => {
   try {
     const res = await api('/enquiries', {
       method: 'POST',
-      body: JSON.stringify({ ...data, party }),
+      body: JSON.stringify({ ...data, party, consent: form.consent.checked }),
     });
 
     formHost.innerHTML = `
